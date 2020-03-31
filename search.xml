@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>let,const ES6入门笔记</title>
-    <url>/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</url>
+    <title>let,const ES6入门</title>
+    <url>/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star（目前是真空的，我会加油逐步完善）</p>
 <h2 id="let命令和const命令"><a href="#let命令和const命令" class="headerlink" title="let命令和const命令"></a>let命令和const命令</h2><p>ES6新增的<code>let</code>命令和<code>const</code>命令和<code>var</code>类似，都是用来<code>声明变量</code>的</p>
 <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
