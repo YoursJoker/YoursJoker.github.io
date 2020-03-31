@@ -196,6 +196,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="YoursJoker">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoursJoker的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">let,const ES6入门笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-31 16:32:29 / 修改时间：18:58:21" itemprop="dateCreated datePublished" datetime="2020-03-31T16:32:29+08:00">2020-03-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>目前<strong>空的</strong>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star（目前是真空的，我会加油逐步完善）</p>
+<h2 id="let命令和const命令"><a href="#let命令和const命令" class="headerlink" title="let命令和const命令"></a>let命令和const命令</h2><p>ES6新增的<code>let</code>命令和<code>const</code>命令和<code>var</code>类似，都是用来<code>声明变量</code>的</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li><code>let</code> <code>const</code>只在声明的<code>块级作用域</code>生效</li>
+</ul>
+<blockquote>
+<ol>
+<li>在ES6之前只有 <em>全局作用域</em> 和 <em>函数作用域</em></li>
+<li>ES6新增了大括号{}表示的块级作用域，可嵌套</li>
+</ol>
+</blockquote>
+<ul>
+<li><code>let</code> <code>const</code>预编译声明不会提前</li>
+</ul>
+<blockquote>
+<ol>
+<li><strong>暂时性死区</strong>temporal dead zone简称 TDZ，当使用<code>let</code> <code>const</code>命令时，区块中的<code>let</code> <code>const</code>命令声明的变量从一开始就形成了封闭作用域，凡是在<strong>声明前使用</strong>都会报错</li>
+<li><strong>特别注意</strong>：声明前使用typeof也会报错，而ES6之前typeof是一个绝对安全的函数</li>
+</ol>
+</blockquote>
+<ul>
+<li>不可以重复定义<blockquote>
+<ol>
+<li><code>let</code> <code>const</code>在同一个代码块不可以重复定义，否则会报错</li>
+</ol>
+</blockquote>
+<h3 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h3></li>
+</ul>
+<p>1.<code>for</code>循环中用<code>let</code>声明的迭代变量每次都是<strong>新的变量</strong>，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br></pre></td></tr></table></figure>
+<p>每一次循环的i其实都是一个<strong>新的变量</strong>,<code>JavaScript</code><strong>引擎内部</strong>会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算</p>
+<p>2.<code>for</code>循环还有一个特别之处，就是设置循环变量的那部分是一个<strong>父作用域</strong>，而循环体内部是一个单独的<strong>子作用域</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">  <span class="built_in">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  console.log(i);&#125;</span><br><span class="line">// abc// abc// abc</span><br></pre></td></tr></table></figure>
+<p><code>a</code>声明了两次，表明函数内部的变量<code>i</code>与循环变量<code>i</code>不在同一个作用域，有各自单独的作用域</p>
+<h3 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h3><p><code>const</code>命令定义时<strong>必须初始化</strong><br><code>const</code>定义的变量为原始值时不可改变，为引用值时对象的属性可以改</p>
+<p>###顶层对象的属性</p>
+<ol>
+<li>在浏览器环境指的是<code>window</code>对象，<code>window</code>也有实体含义，指的是<strong>浏览器的窗口对象</strong></li>
+<li>在Node指的是<code>global</code>对象</li>
+<li><strong>ES5</strong>中<strong>顶层对象的属性</strong>和<strong>全局变量</strong>是<strong>等价</strong>的</li>
+<li>ES6中为了保持兼容性<br>①<code>var</code>命令和<code>function</code>命令声明的全局变量，<strong>依旧是</strong>顶层对象的属性<br>②<code>let</code>命令,<code>const</code>命令,<code>class</code>命令声明的全局变量，<strong>不属于顶层对象的属性</strong></li>
+<li><code>globalThis</code>对象，2020新增顶层对象，在<strong>任何环境下<code>globalThis</code>都存在</strong>，都可以拿到顶层对象，指向<strong>全局环境下的this</strong></li>
+</ol>
+<hr>
+<p>ES6入门参考自阮一峰《ES6入门教程》</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/30/First-aticle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,91 +376,6 @@
 
       
           <p>无中生有<br>暗度陈仓<br>偷梁换柱</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/30/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/30/hello-world/" class="post-title-link" itemprop="url">First try</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-30 11:26:19 / 修改时间：13:03:29" itemprop="dateCreated datePublished" datetime="2020-03-30T11:26:19+08:00">2020-03-30</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
       
     </div>
@@ -423,6 +464,18 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
@@ -462,7 +515,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">0k</span>
+    <span title="站点总字数">1k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
