@@ -20,29 +20,32 @@
     var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="精神领袖-窃格拉瓦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YoursJoker的博客">
-<meta property="og:url" content="https://yoursjoker.github.io/index.html">
+  <meta name="description" content="ES6总结系列之 变量的解构赋值 篇变量的解构赋值：分解一个对象的结构，对变量进行赋值，前提：等号两边的模式相同 数组的解构赋值可从数组中提取值，按照对应位置，对变量赋值 1234567891011121314151617181920212223242526272829let [a,b,c] &#x3D; [1,2,3]; &#x2F;&#x2F;a&#x3D;1,b&#x3D;2,c&#x3D;3let [ , ,c] &#x3D; [1,2,3]; &#x2F;&#x2F;省略赋值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解构赋值">
+<meta property="og:url" content="https://yoursjoker.github.io/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/index.html">
 <meta property="og:site_name" content="YoursJoker的博客">
-<meta property="og:description" content="精神领袖-窃格拉瓦">
+<meta property="og:description" content="ES6总结系列之 变量的解构赋值 篇变量的解构赋值：分解一个对象的结构，对变量进行赋值，前提：等号两边的模式相同 数组的解构赋值可从数组中提取值，按照对应位置，对变量赋值 1234567891011121314151617181920212223242526272829let [a,b,c] &#x3D; [1,2,3]; &#x2F;&#x2F;a&#x3D;1,b&#x3D;2,c&#x3D;3let [ , ,c] &#x3D; [1,2,3]; &#x2F;&#x2F;省略赋值">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-03T08:06:18.000Z">
+<meta property="article:modified_time" content="2020-08-03T08:08:59.321Z">
 <meta property="article:author" content="YoursJoker">
+<meta property="article:tag" content="ES6入门">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yoursjoker.github.io/">
+<link rel="canonical" href="https://yoursjoker.github.io/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false
+    isHome : false,
+    isPost : true
   };
 </script>
 
-  <title>YoursJoker的博客</title>
+  <title>解构赋值 | YoursJoker的博客</title>
   
 
 
@@ -194,10 +197,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -211,8 +214,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" class="post-title-link" itemprop="url">解构赋值</a>
+          解构赋值
         </h2>
 
         <div class="post-meta">
@@ -260,7 +262,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="ES6总结系列之-变量的解构赋值-篇"><a href="#ES6总结系列之-变量的解构赋值-篇" class="headerlink" title="ES6总结系列之 变量的解构赋值 篇"></a>ES6总结系列之 变量的解构赋值 篇</h1><p>变量的解构赋值：<strong>分解</strong>一个对象的结构，对变量进行<strong>赋值</strong>，前提：等号两边的<strong>模式相同</strong></p>
+        <h1 id="ES6总结系列之-变量的解构赋值-篇"><a href="#ES6总结系列之-变量的解构赋值-篇" class="headerlink" title="ES6总结系列之 变量的解构赋值 篇"></a>ES6总结系列之 变量的解构赋值 篇</h1><p>变量的解构赋值：<strong>分解</strong>一个对象的结构，对变量进行<strong>赋值</strong>，前提：等号两边的<strong>模式相同</strong></p>
 <h2 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h2><p>可从数组中提取值，按照<strong>对应位置</strong>，对变量赋值</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"> <span class="comment">//a=1,b=2,c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [ , ,c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="comment">//省略赋值  c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a, [[b], c]] = [<span class="number">1</span>, [[<span class="number">2</span>], <span class="number">3</span>]];</span><br><span class="line"><span class="comment">//嵌套解构 a=1,c=2,c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a] = [];</span><br><span class="line"><span class="comment">//结构不成功，变量的的值就等于undefined， 所以a = undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>，j = <span class="number">1</span>] = [<span class="literal">undefined</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="comment">//x = 1; j = null;</span></span><br><span class="line"><span class="comment">//解构指定默认值， 只有严格等于(===)undefined是才起作用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//默认值为表达式时，其求值时惰性的，即需要用时才计算，如下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'aaa'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> [x = f()] = [<span class="number">1</span>];</span><br><span class="line"><span class="comment">//上面代码中，因为x能取到值，所以函数f根本不会执行。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [];     <span class="comment">// x=1; y=1</span></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [<span class="number">2</span>];    <span class="comment">// x=2; y=2</span></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [<span class="number">1</span>, <span class="number">2</span>]; <span class="comment">// x=1; y=2</span></span><br><span class="line"><span class="keyword">let</span> [x = y, y = <span class="number">1</span>] = [];     <span class="comment">// ReferenceError: y is not defined</span></span><br><span class="line"><span class="comment">//默认值可以引用解构赋值的其他变量，但该变量必须已经声明</span></span><br><span class="line"><span class="comment">//上面最后一个表达式之所以会报错，是因为x用y做默认值时，y还没有声明。</span></span><br></pre></td></tr></table></figure>
 
@@ -288,327 +290,36 @@
 <li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/ES6%E5%85%A5%E9%97%A8/" rel="tag"># ES6入门</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/02/BFC-MarginCollapse/" class="post-title-link" itemprop="url">你不知道的CSS之BFC和margin塌陷</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-02 00:20:53 / 修改时间：01:50:37" itemprop="dateCreated datePublished" datetime="2020-04-02T00:20:53+08:00">2020-04-02</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSS之BFC，margin塌陷篇"><a href="#CSS之BFC，margin塌陷篇" class="headerlink" title="CSS之BFC，margin塌陷篇"></a>CSS之BFC，margin塌陷篇</h2><p>大家好，我是YoursJoker，想要走出大山的一个小菜鸟，今天将用简单易懂的语言，让大家快速了解和掌握CSS中的BFC和margin塌陷（本人新手一枚，各位大佬们多多包涵）</p>
-<h3 id="何为BFC"><a href="#何为BFC" class="headerlink" title="何为BFC"></a>何为BFC</h3><p>BFC就是块级格式化上下文<code>block formatting context</code></p>
-<hr>
-<h3 id="BFC特性："><a href="#BFC特性：" class="headerlink" title="BFC特性："></a>BFC特性：</h3><ul>
-<li>BFC就是页面上的一个<strong>隔离的独立容器</strong>，容器里的子元素不会影响到外面的元素</li>
-<li>计算BFC高度时，浮动元素会被计算进去，可用于<strong>清除浮动</strong></li>
-<li>内部的Box会在垂直方向，从顶部开始一个接一个的放置，相当于文档流</li>
-<li>Box垂直方向的距离由margin决定，会<strong>叠加</strong>，而不是取<code>margin-bottom</code>和<code>margin-top</code>的最大值，可<strong>解决margin塌陷</strong>，关于margin塌陷滑下手指就能看到啦</li>
-</ul>
-<hr>
-<h3 id="触发bfc条件"><a href="#触发bfc条件" class="headerlink" title="触发bfc条件"></a>触发bfc条件</h3><ul>
-<li>position：absolute/fixed</li>
-<li>display:inline-block</li>
-<li>float:right/left</li>
-<li>overflow:不为visible(<code>scroll</code>/<code>hidden</code>/<code>auto</code>)</li>
-</ul>
-<hr>
-<h3 id="margin塌陷"><a href="#margin塌陷" class="headerlink" title="margin塌陷"></a>margin塌陷</h3><ul>
-<li>兄弟元素：<strong>垂直方向</strong>的<code>margin</code>会出现合并，即只取前一个元素margin-bottom或后一个元素margin-top两者的较大值；<strong>水平方向</strong>不会出现合并，会正常叠加</li>
-<li>父子元素：子元素设置<code>margin-top</code>时会忽视父元素上边,有点像挡不住子元素，子元素“逃”出去了，干说不是很很清楚，直接上代码吧<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"father"</span>&gt;              //父元素红色</span><br><span class="line">	&lt;div class=<span class="string">"son"</span>&gt;&lt;/div&gt;     //子元素黑色</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.father&#123;</span><br><span class="line">	width: 200px;</span><br><span class="line">	height: 200px;</span><br><span class="line">	background-color: <span class="comment">#f00;</span></span><br><span class="line">	&#125;</span><br><span class="line">.item1&#123;</span><br><span class="line">	margin-top: 20px;         //子元素设置margin-top</span><br><span class="line">	width: 50px;</span><br><span class="line">	height: 50px;</span><br><span class="line">	background-color: <span class="comment">#000;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db2299cfdc0?w=252&h=252&f=png&s=1824" alt title="理想中的样子"> <img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db4bffaab8f?w=250&h=281&f=png&s=1773" alt title="可现实呜呜呜"><br>理想的样子是子元素距离父元素上边距<code>20px</code>,可实际是子元素直接“忽略”了父元素<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3></li>
-<li>最直接给父元素设置<code>border-wide</code>，可我们往往不需要这个边框，影响美观，这时就可采用下面这种方法</li>
-<li>可用前面所讲的bfc解决margin塌陷问题</li>
-</ul>
-<hr>
-<ul>
-<li>浮动元素产生了浮动流：所有产生了浮动流的元素，块级元素看不到他们</li>
-<li>产生了bfc的元素、文本类型属性(包括<code>inline</code> <code>inline-block</code>的）文本都能看到浮动元素(图片配合float可以形成环绕文字的效果哦！)。</li>
-<li>设置了<code>position:absolute</code>和<code>float:left/right</code>的元素会变成inline-block元素</li>
-</ul>
-<p><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎stars鼓励一下<br><a href https: yoursjoker.github.io "">个人博客</a>，刚建立不久的博客，有空的大佬可以过来提提建议</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">let,const ES6入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-31 16:32:29 / 修改时间：19:15:47" itemprop="dateCreated datePublished" datetime="2020-03-31T16:32:29+08:00">2020-03-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star（目前是真空的，我会加油逐步完善）</p>
-<h2 id="let命令和const命令"><a href="#let命令和const命令" class="headerlink" title="let命令和const命令"></a>let命令和const命令</h2><p>ES6新增的<code>let</code>命令和<code>const</code>命令和<code>var</code>类似，都是用来<code>声明变量</code>的</p>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
-<li><code>let</code> <code>const</code>只在声明的<code>块级作用域</code>生效</li>
-</ul>
-<blockquote>
-<ol>
-<li>在ES6之前只有 <em>全局作用域</em> 和 <em>函数作用域</em></li>
-<li>ES6新增了大括号{}表示的块级作用域，可嵌套</li>
-</ol>
-</blockquote>
-<ul>
-<li><code>let</code> <code>const</code>预编译声明不会提前</li>
-</ul>
-<blockquote>
-<ol>
-<li><strong>暂时性死区</strong>temporal dead zone简称 TDZ，当使用<code>let</code> <code>const</code>命令时，区块中的<code>let</code> <code>const</code>命令声明的变量从一开始就形成了封闭作用域，凡是在<strong>声明前使用</strong>都会报错</li>
-<li><strong>特别注意</strong>：声明前使用typeof也会报错，而ES6之前typeof是一个绝对安全的函数</li>
-</ol>
-</blockquote>
-<ul>
-<li>不可以重复定义<blockquote>
-<ol>
-<li><code>let</code> <code>const</code>在同一个代码块不可以重复定义，否则会报错</li>
-</ol>
-</blockquote>
-<h3 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h3></li>
-</ul>
-<p>1.<code>for</code>循环中用<code>let</code>声明的迭代变量每次都是<strong>新的变量</strong>，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br></pre></td></tr></table></figure>
-<p>每一次循环的i其实都是一个<strong>新的变量</strong>,<code>JavaScript</code><strong>引擎内部</strong>会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算</p>
-<p>2.<code>for</code>循环还有一个特别之处，就是设置循环变量的那部分是一个<strong>父作用域</strong>，而循环体内部是一个单独的<strong>子作用域</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">  <span class="built_in">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  console.log(i);&#125;</span><br><span class="line">// abc// abc// abc</span><br></pre></td></tr></table></figure>
-<p><code>a</code>声明了两次，表明函数内部的变量<code>i</code>与循环变量<code>i</code>不在同一个作用域，有各自单独的作用域</p>
-<h3 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h3><p><code>const</code>命令定义时<strong>必须初始化</strong><br><code>const</code>定义的变量为原始值时不可改变，为引用值时对象的属性可以改</p>
-<p>###顶层对象的属性</p>
-<ol>
-<li>在浏览器环境指的是<code>window</code>对象，<code>window</code>也有实体含义，指的是<strong>浏览器的窗口对象</strong></li>
-<li>在Node指的是<code>global</code>对象</li>
-<li><strong>ES5</strong>中<strong>顶层对象的属性</strong>和<strong>全局变量</strong>是<strong>等价</strong>的</li>
-<li>ES6中为了保持兼容性<br>①<code>var</code>命令和<code>function</code>命令声明的全局变量，<strong>依旧是</strong>顶层对象的属性<br>②<code>let</code>命令,<code>const</code>命令,<code>class</code>命令声明的全局变量，<strong>不属于顶层对象的属性</strong></li>
-<li><code>globalThis</code>对象，2020新增顶层对象，在<strong>任何环境下<code>globalThis</code>都存在</strong>，都可以拿到顶层对象，指向<strong>全局环境下的this</strong></li>
-</ol>
-<hr>
-<p>ES6入门参考自阮一峰《ES6入门教程》</p>
-
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/02/BFC-MarginCollapse/" rel="prev" title="你不知道的CSS之BFC和margin塌陷">
+      <i class="fa fa-chevron-left"></i> 你不知道的CSS之BFC和margin塌陷
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/30/First-aticle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/30/First-aticle/" class="post-title-link" itemprop="url">First-aticle</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-30 13:06:51 / 修改时间：13:07:33" itemprop="dateCreated datePublished" datetime="2020-03-30T13:06:51+08:00">2020-03-30</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>12</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>无中生有<br>暗度陈仓<br>偷梁换柱</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -659,6 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6总结系列之-变量的解构赋值-篇"><span class="nav-number">1.</span> <span class="nav-text">ES6总结系列之 变量的解构赋值 篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的解构赋值"><span class="nav-number">1.1.</span> <span class="nav-text">数组的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的解构赋值"><span class="nav-number">1.2.</span> <span class="nav-text">对象的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的解构赋值"><span class="nav-number">1.3.</span> <span class="nav-text">字符串的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值和布尔值的解构赋值"><span class="nav-number">1.4.</span> <span class="nav-text">数值和布尔值的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数参数的解构赋值"><span class="nav-number">1.5.</span> <span class="nav-text">函数参数的解构赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆括号问题"><span class="nav-number">1.6.</span> <span class="nav-text">圆括号问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结要点"><span class="nav-number">1.7.</span> <span class="nav-text">总结要点</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
