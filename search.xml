@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数组的扩展</title>
+    <url>/2020/08/04/%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95/</url>
+    <content><![CDATA[<h1 id="ES6总结系列之-数组的扩展-篇"><a href="#ES6总结系列之-数组的扩展-篇" class="headerlink" title="ES6总结系列之 数组的扩展 篇"></a>ES6总结系列之 数组的扩展 篇</h1><hr>
+<h2 id="1-扩展运算符-…"><a href="#1-扩展运算符-…" class="headerlink" title="1.扩展运算符(…)"></a>1.扩展运算符(…)</h2><h3 id="①扩展运算符-spread-好比rest参数的逆运算，将一个数组转化为逗号分隔的参数序列，可以想象成去掉中括号"><a href="#①扩展运算符-spread-好比rest参数的逆运算，将一个数组转化为逗号分隔的参数序列，可以想象成去掉中括号" class="headerlink" title="①扩展运算符(spread)好比rest参数的逆运算，将一个数组转化为逗号分隔的参数序列，可以想象成去掉中括号[]"></a>①扩展运算符(spread)好比rest参数的<strong>逆运算</strong>，将一个数组转化为逗号分隔的参数序列，可以想象成去掉中括号<code>[]</code></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">// 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="②扩展运算符后面还可以放置表达式"><a href="#②扩展运算符后面还可以放置表达式" class="headerlink" title="②扩展运算符后面还可以放置表达式"></a>②扩展运算符后面还可以放置表达式</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [</span><br><span class="line">  ...(x &gt; <span class="number">0</span> ? [<span class="string">'a'</span>] : []),</span><br><span class="line">  <span class="string">'b'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h3 id="③可以实现数组深拷贝"><a href="#③可以实现数组深拷贝" class="headerlink" title="③可以实现数组深拷贝"></a>③可以实现数组深拷贝</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="comment">// 写法一</span></span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br><span class="line"><span class="comment">// 写法二</span></span><br><span class="line"><span class="keyword">const</span> [...a2] = a1;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Array-from-arr-fn-item-index-–返回一个新数组"><a href="#2-Array-from-arr-fn-item-index-–返回一个新数组" class="headerlink" title="2.Array.from(arr, fn(item,index)) –返回一个新数组"></a>2.Array.from(arr, fn(item,index)) –返回一个新数组</h2><p>Array.from方法将：<strong>类似数组</strong>的对象（array-like object）和可<strong>遍历（iterable）的对象</strong>（包括 ES6 新增的数据结构 Set 和 Map）两类对象<strong>转为</strong>真正的<strong>数组</strong>。<br>常见的类数组有<code>arguments</code>和<code>NodeList</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">    <span class="string">'0'</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="string">'1'</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="string">'2'</span>: <span class="string">'c'</span>,</span><br><span class="line">    length: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [].prototype.slice.call(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="built_in">Array</span>.from(arrayLike); <span class="comment">// ['a', 'b', 'c']</span></span><br></pre></td></tr></table></figure>
+
+<p>Array.from还可以接受<strong>第二个参数</strong>，作用类似于数组的<code>map</code>方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(arrayLike, x =&gt; x * x);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">Array</span>.from(arrayLike).map(<span class="function"><span class="params">x</span> =&gt;</span> x * x);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], (x) =&gt; x * x)</span><br><span class="line"><span class="comment">// [1, 4, 9]</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-Array-of-a-b-c-a-b-c"><a href="#3-Array-of-a-b-c-a-b-c" class="headerlink" title="3.Array.of(a,b,c) //[a, b, c]"></a>3.Array.of(a,b,c) //[a, b, c]</h2><p>Array.of方法用于将一组<strong>值</strong>转化为<strong>数组</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>) <span class="comment">// [3,11,8]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>) <span class="comment">// [3]</span></span><br><span class="line"><span class="built_in">Array</span>.of(<span class="number">3</span>).length <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>弥补数组构造函数<code>Array()</code>的不足,只有当参数个数<strong>不少于 2</strong> 个时，<code>Array()</code>才会返回由参数组成的<strong>新数组</strong>。参数个数只有<strong>一个</strong>时，实际上是<strong>指定数组的长度</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>() <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>, <span class="number">11</span>, <span class="number">8</span>) <span class="comment">// [3, 11, 8]</span></span><br></pre></td></tr></table></figure>
+<p><code>rest</code>参数同理:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;&#125;).length <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="总结要点"><a href="#总结要点" class="headerlink" title="总结要点"></a>总结要点</h2><p>扩展运算符 …</p>
+<ol>
+<li>可以实现数组深拷贝 arr = [1,2,3]  arr1 = […arr];</li>
+<li>扩展运算符内部调用的是数据结构的 Iterator 接口，因此只要具有 Iterator 接口的对象，都可以使用扩展运算符，比如 Map 结构。</li>
+<li>Generator 函数运行后，返回一个遍历器对象</li>
+<li>没有 Iterator 接口的对象，使用扩展运算符，将会报错</li>
+<li>扩展运算符后面可加表达式    …(x &gt; 0 ? [‘a’] : [])</li>
+<li>扩展运算符后面如果是一个空字符串，则不产生任何效果.</li>
+<li>只有函数调用时，扩展运算符才可以放在圆括号中，否则会报错.</li>
+<li>如果扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错， </li>
+</ol>
+<p>常见的类数组：arguments、NodeList</p>
+<p>Array.from(arr, fn(ele,index)) –返回一个新数组</p>
+<ol>
+<li>将<code>类数组</code>（具有length属性就行）和可遍历的对象（具有Iterat）转换为数组</li>
+<li>回调函数类似于map（fn（ele,index））</li>
+<li>支持第三个参数：用来绑定map里面的this</li>
+</ol>
+<p>Array.of(a,b,c) //[a,b,c]</p>
+<ol>
+<li>将一组值转化为数组</li>
+<li>弥补Array()参数为一个时为指定<code>length</code>的缺陷</li>
+</ol>
+<hr>
+<ul>
+<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
+<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
+</ul>
+]]></content>
+      <categories>
+        <category>ES6入门</category>
+      </categories>
+      <tags>
+        <tag>ES6入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>函数的扩展</title>
     <url>/2020/08/03/%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A9%E5%B1%95/</url>
     <content><![CDATA[<h1 id="ES6总结系列之-函数的扩展-篇"><a href="#ES6总结系列之-函数的扩展-篇" class="headerlink" title="ES6总结系列之 函数的扩展 篇"></a>ES6总结系列之 函数的扩展 篇</h1><hr>
