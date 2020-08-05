@@ -27,14 +27,16 @@
 <meta property="og:site_name" content="YoursJoker的博客">
 <meta property="og:description" content="CSS之BFC，margin塌陷篇大家好，我是YoursJoker，想要走出大山的一个小菜鸟，今天将用简单易懂的语言，让大家快速了解和掌握CSS中的BFC和margin塌陷（本人新手一枚，各位大佬们多多包涵） 何为BFCBFC就是块级格式化上下文block formatting context  BFC特性： BFC就是页面上的一个隔离的独立容器，容器里的子元素不会影响到外面的元素 计算BFC高度">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/margin1.png">
+<meta property="og:image" content="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/margin2.png">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/2/17136db2299cfdc0?w=252&h=252&f=png&s=1824">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/4/2/17136db4bffaab8f?w=250&h=281&f=png&s=1773">
 <meta property="article:published_time" content="2020-04-01T16:20:53.000Z">
-<meta property="article:modified_time" content="2020-08-03T08:39:01.346Z">
+<meta property="article:modified_time" content="2020-08-05T09:41:44.121Z">
 <meta property="article:author" content="YoursJoker">
 <meta property="article:tag" content="CSS特别篇">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/4/2/17136db2299cfdc0?w=252&h=252&f=png&s=1824">
+<meta name="twitter:image" content="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/margin1.png">
 
 <link rel="canonical" href="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/">
 
@@ -234,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-03 16:39:01" itemprop="dateModified" datetime="2020-08-03T16:39:01+08:00">2020-08-03</time>
+                <time title="修改时间：2020-08-05 17:41:44" itemprop="dateModified" datetime="2020-08-05T17:41:44+08:00">2020-08-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -292,6 +294,7 @@
 <li>兄弟元素：<strong>垂直方向</strong>的<code>margin</code>会出现合并，即只取前一个元素margin-bottom或后一个元素margin-top两者的较大值；<strong>水平方向</strong>不会出现合并，会正常叠加</li>
 <li>父子元素：子元素设置<code>margin-top</code>时会忽视父元素上边,有点像挡不住子元素，子元素“逃”出去了，干说不是很很清楚，直接上代码吧<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"father"</span>&gt;              //父元素红色</span><br><span class="line">	&lt;div class=<span class="string">"son"</span>&gt;&lt;/div&gt;     //子元素黑色</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.father&#123;</span><br><span class="line">	width: 200px;</span><br><span class="line">	height: 200px;</span><br><span class="line">	background-color: <span class="comment">#f00;</span></span><br><span class="line">	&#125;</span><br><span class="line">.item1&#123;</span><br><span class="line">	margin-top: 20px;         //子元素设置margin-top</span><br><span class="line">	width: 50px;</span><br><span class="line">	height: 50px;</span><br><span class="line">	background-color: <span class="comment">#000;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2020/04/02/BFC-MarginCollapse/margin1.png" class title="理想中的样子"><img src="/2020/04/02/BFC-MarginCollapse/margin2.png" class title="可现实呜呜呜">
 <img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db2299cfdc0?w=252&h=252&f=png&s=1824" alt title="理想中的样子"> <img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db4bffaab8f?w=250&h=281&f=png&s=1773" alt title="可现实呜呜呜"><br>理想的样子是子元素距离父元素上边距<code>20px</code>,可实际是子元素直接“忽略”了父元素<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3></li>
 <li>最直接给父元素设置<code>border-wide</code>，可我们往往不需要这个边框，影响美观，这时就可采用下面这种方法</li>
 <li>可用前面所讲的bfc解决margin塌陷问题</li>
@@ -403,20 +406,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -458,12 +461,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">16k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">15 分钟</span>
 </div>
 
         
