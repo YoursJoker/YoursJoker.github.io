@@ -198,6 +198,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/05/Symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="YoursJoker">
+      <meta itemprop="description" content="精神领袖-窃格拉瓦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoursJoker的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/Symbol/" class="post-title-link" itemprop="url">Symbol</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-05 10:57:06 / 修改时间：15:26:04" itemprop="dateCreated datePublished" datetime="2020-08-05T10:57:06+08:00">2020-08-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES6总结系列之-Symbol-篇"><a href="#ES6总结系列之-Symbol-篇" class="headerlink" title="ES6总结系列之 Symbol 篇"></a>ES6总结系列之 Symbol 篇</h1><hr>
+<p>ES6 引入了一种<strong>新的原始数据类型</strong><code>Symbol</code>，表示<strong>独一无二</strong>的值。可以从根本上防止<strong>属性名</strong>的冲突，<code>Symbol</code> 值通过<strong>Symbol函数</strong>生成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> s</span><br><span class="line"><span class="comment">// "symbol"</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-Symbol是第七种数据类型，前六种为：underfined-null-String-Boolean-Number-Object"><a href="#1-Symbol是第七种数据类型，前六种为：underfined-null-String-Boolean-Number-Object" class="headerlink" title="1.Symbol是第七种数据类型，前六种为：underfined, null,String, Boolean, Number,  Object"></a>1.<code>Symbol</code>是第七种数据类型，前六种为：<code>underfined</code>, <code>null</code>,<code>String</code>, <code>Boolean</code>, <code>Number</code>,  <code>Object</code></h4><h4 id="2-Symbol函数前不能使用new命令，否则会报错。这是因为生成的-Symbol-是一个原始类型的值，不是对象。"><a href="#2-Symbol函数前不能使用new命令，否则会报错。这是因为生成的-Symbol-是一个原始类型的值，不是对象。" class="headerlink" title="2.Symbol函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。"></a>2.<code>Symbol</code>函数前不能使用<code>new</code>命令，否则会报错。这是因为生成的 <code>Symbol</code> 是一个原始类型的值，不是对象。</h4><h4 id="3-Symbol函数可以接受一个字符串作为参数，表示对-Symbol-实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。"><a href="#3-Symbol函数可以接受一个字符串作为参数，表示对-Symbol-实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。" class="headerlink" title="3.Symbol函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。"></a>3.<code>Symbol</code>函数可以接受一个字符串作为参数，表示对 <code>Symbol</code> 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">'bar'</span>);</span><br><span class="line"></span><br><span class="line">s1 <span class="comment">// Symbol(foo)</span></span><br><span class="line">s2 <span class="comment">// Symbol(bar)</span></span><br><span class="line"></span><br><span class="line">s1.toString() <span class="comment">// "Symbol(foo)"</span></span><br><span class="line">s2.toString() <span class="comment">// "Symbol(bar)"</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="4-Symbol参数只是描述，相同参数返回的值是不相等的"><a href="#4-Symbol参数只是描述，相同参数返回的值是不相等的" class="headerlink" title="4.Symbol参数只是描述，相同参数返回的值是不相等的"></a>4.Symbol参数只是描述，相同参数返回的值是不相等的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有参数的情况</span></span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line">s1 === s2 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有参数的情况</span></span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">s1 === s2 <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="5-Symbol-值不能与其他类型的值进行运算，会报错。"><a href="#5-Symbol-值不能与其他类型的值进行运算，会报错。" class="headerlink" title="5.Symbol 值不能与其他类型的值进行运算，会报错。"></a>5.<code>Symbol</code> 值不能与其他类型的值进行运算，会报错。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="string">"your symbol is "</span> + sym</span><br><span class="line"><span class="comment">// TypeError: can't convert symbol to string</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="6-Symbol-的参数如果是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个-Symbol-值。"><a href="#6-Symbol-的参数如果是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个-Symbol-值。" class="headerlink" title="6.Symbol 的参数如果是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。"></a>6.<code>Symbol</code> 的参数如果是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'abc'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(obj);</span><br><span class="line">sym <span class="comment">// Symbol(abc)</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="7-Symbol-值可以显式转为字符串，也可以转为布尔值，但是不能转为数值。"><a href="#7-Symbol-值可以显式转为字符串，也可以转为布尔值，但是不能转为数值。" class="headerlink" title="7.Symbol 值可以显式转为字符串，也可以转为布尔值，但是不能转为数值。"></a>7.<code>Symbol</code> 值可以显式转为字符串，也可以转为布尔值，但是不能转为数值。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>(<span class="string">'My symbol'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(sym) <span class="comment">// 'Symbol(My symbol)'</span></span><br><span class="line">sym.toString() <span class="comment">// 'Symbol(My symbol)'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sym = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="built_in">Boolean</span>(sym) <span class="comment">// true</span></span><br><span class="line">!sym  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (sym) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Number</span>(sym) <span class="comment">// TypeError</span></span><br><span class="line">sym + <span class="number">2</span> <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="8-读取描述一般要将symbol转化为字符串，ES2019提供了一个实例属性description，直接返回Symbol-的描述"><a href="#8-读取描述一般要将symbol转化为字符串，ES2019提供了一个实例属性description，直接返回Symbol-的描述" class="headerlink" title="8.读取描述一般要将symbol转化为字符串，ES2019提供了一个实例属性description，直接返回Symbol 的描述"></a>8.读取描述一般要将symbol转化为字符串，ES2019提供了一个实例属性description，直接返回Symbol 的描述</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">sym.description <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="9-Symbol-值作为对象属性名时，不能用点运算符。"><a href="#9-Symbol-值作为对象属性名时，不能用点运算符。" class="headerlink" title="9.Symbol 值作为对象属性名时，不能用点运算符。"></a>9.Symbol 值作为对象属性名时，不能用点运算符。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">a.mySymbol = <span class="string">'Hello!'</span>;</span><br><span class="line">a[mySymbol] <span class="comment">// undefined</span></span><br><span class="line">a[<span class="string">'mySymbol'</span>] <span class="comment">// "Hello!"</span></span><br></pre></td></tr></table></figure>
+<p>因为<strong>点运算符后面总是字符串</strong>，所以不会读取mySymbol作为标识名所指代的那个值，导致a的属性名实际上<strong>是一个字符串</strong>，而<strong>不是一个 Symbol 值。</strong></p>
+<h4 id="10-同理，对象的内部，使用-Symbol-值定义属性时，Symbol-值必须放在方括号之中。"><a href="#10-同理，对象的内部，使用-Symbol-值定义属性时，Symbol-值必须放在方括号之中。" class="headerlink" title="10.同理，对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。"></a>10.同理，对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [s]: <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123; ... &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[s](<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="11-Symbol-值作为属性名时，该属性还是公开属性，不是私有属性。"><a href="#11-Symbol-值作为属性名时，该属性还是公开属性，不是私有属性。" class="headerlink" title="11.Symbol 值作为属性名时，该属性还是公开属性，不是私有属性。"></a>11.Symbol 值作为属性名时，该属性还是公开属性，不是私有属性。</h4><h4 id="12-Symbol-作为属性名，遍历对象的时候，该属性不会出现在for-in、for-of循环中，也不会被Object-keys-、Object-getOwnPropertyNames-、JSON-stringify-返回。有一个Object-getOwnPropertySymbols-方法，可以获取指定对象的所有-Symbol-属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的-Symbol-值。"><a href="#12-Symbol-作为属性名，遍历对象的时候，该属性不会出现在for-in、for-of循环中，也不会被Object-keys-、Object-getOwnPropertyNames-、JSON-stringify-返回。有一个Object-getOwnPropertySymbols-方法，可以获取指定对象的所有-Symbol-属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的-Symbol-值。" class="headerlink" title="12.Symbol 作为属性名，遍历对象的时候，该属性不会出现在for...in、for...of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回。有一个Object.getOwnPropertySymbols()方法，可以获取指定对象的所有 Symbol 属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。"></a>12.<code>Symbol</code> 作为属性名，遍历对象的时候，该属性不会出现在<code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回。有一个<code>Object.getOwnPropertySymbols()</code>方法，可以获取指定对象的所有 Symbol 属性名。该方法返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>(<span class="string">'a'</span>);</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">obj[a] = <span class="string">'Hello'</span>;</span><br><span class="line">obj[b] = <span class="string">'World'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objectSymbols = <span class="built_in">Object</span>.getOwnPropertySymbols(obj);</span><br><span class="line"></span><br><span class="line">objectSymbols</span><br><span class="line"><span class="comment">// [Symbol(a), Symbol(b)]</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="13-有时，我们希望重新使用同一个-Symbol-值，Symbol-for-方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的-Symbol-值。如果有，就返回这个-Symbol-值，否则就新建一个以该字符串为名称的-Symbol-值，并将其注册到全局。"><a href="#13-有时，我们希望重新使用同一个-Symbol-值，Symbol-for-方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的-Symbol-值。如果有，就返回这个-Symbol-值，否则就新建一个以该字符串为名称的-Symbol-值，并将其注册到全局。" class="headerlink" title="13.有时，我们希望重新使用同一个 Symbol 值，Symbol.for()方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局。"></a>13.有时，我们希望重新使用同一个 <code>Symbol</code> 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 <code>Symbol</code> 值。如果有，就返回这个 <code>Symbol</code> 值，否则就新建一个以该字符串为名称的 <code>Symbol</code> 值，并将其注册到全局。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>.for(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>.for(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">s1 === s2 <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="14-Symbol-keyFor-方法返回一个已登记-的-Symbol-类型值的key。"><a href="#14-Symbol-keyFor-方法返回一个已登记-的-Symbol-类型值的key。" class="headerlink" title="14.Symbol.keyFor()方法返回一个已登记 的 Symbol 类型值的key。"></a>14.Symbol.keyFor()方法返回一个<em>已登记</em> 的 Symbol 类型值的key。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">Symbol</span>.keyFor(s1) <span class="comment">// "foo"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">Symbol</span>.keyFor(s2) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p><code>Symbol()</code>写法<strong>没有</strong>登记机制<br>比如，如果你调用<code>Symbol.for(&quot;cat&quot;)</code>30 次，每次都会返回<strong>同一个</strong> <code>Symbol</code> 值,但是调用<code>Symbol(&quot;cat&quot;)</code>30 次，会返回 <strong>30 个不同</strong>的 <code>Symbol</code> 值。</p>
+<h2 id="总结要点"><a href="#总结要点" class="headerlink" title="总结要点"></a>总结要点</h2><ol>
+<li><code>Symbol</code>是第七种数据类型</li>
+<li><code>Symbol</code>函数前<strong>不能</strong>使用<code>new</code>命令</li>
+<li><code>Symbol</code>函数接收的参数，主要是为了在<strong>控制台</strong>或<strong>转化为字符串</strong>时容易区分</li>
+<li><code>Symbol</code>参数<strong>只是描述</strong>，<strong>相同</strong>参数返回的值是<strong>不相等</strong>的</li>
+<li><code>Symbol</code> 值<strong>不能</strong>与其他类型的值进行运算，会报错</li>
+<li>对象作为<code>Symbol</code>参数时，会<strong>先</strong>调用该对象的<code>toString</code><strong>转为字符串</strong></li>
+<li><code>Symbol</code> 值可以<strong>显式</strong>转为字符串，也可以转为布尔值，但是<strong>不能</strong>转为数值。</li>
+<li>读取描述一般要将<code>symbol</code><strong>转化为字符串</strong>，ES2019提供了一个<strong>实例属性</strong>description，直接返回Symbol 的描述</li>
+<li><strong>读取</strong>或<strong>定义</strong>一个<code>Symbol</code>值为<strong>属性名</strong>时，要用<code>中括号[]</code>，不能用<code>点.</code></li>
+<li><code>Symbol(描述)</code><strong>没有</strong>登记机制，<code>Symbol.for(描述)</code><strong>有</strong>登记机制 </li>
+<li>可用<code>Object.getOwnPropertySymbols()</code>方法，获取指定对象的所有 <code>Symbol</code> 属性名。</li>
+</ol>
+<hr>
+<ul>
+<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
+<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/04/%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1072,7 +1206,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1127,12 +1261,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">13k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9 分钟</span>
+    <span title="站点阅读时长">12 分钟</span>
 </div>
 
         
