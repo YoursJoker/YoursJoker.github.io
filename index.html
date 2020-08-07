@@ -198,6 +198,244 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/07/AJAX%E5%92%8CJSONP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="YoursJoker">
+      <meta itemprop="description" content="精神领袖-窃格拉瓦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoursJoker的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/07/AJAX%E5%92%8CJSONP/" class="post-title-link" itemprop="url">AJAX和JSONP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-07 11:21:45 / 修改时间：22:32:01" itemprop="dateCreated datePublished" datetime="2020-08-07T11:21:45+08:00">2020-08-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-AJAX"><a href="#1-AJAX" class="headerlink" title="1.AJAX"></a>1.AJAX</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>Asynchronous JavaScript and XML(AJAX)<br>异步的 JavaScript 和 XML<br>AJAX 是一种在<strong>无需</strong>重新加载<strong>整个网页</strong>的情况下，能够<strong>更新部分网页</strong>的技术。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><h4 id="1-创建-XMLHttpRequest-实例"><a href="#1-创建-XMLHttpRequest-实例" class="headerlink" title="1.创建 XMLHttpRequest 实例"></a>1.创建 <code>XMLHttpRequest</code> 实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>) <span class="comment">//（IE5 和 IE6）使用 ActiveX 对象</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-使用-open-方法，初始化请求参数"><a href="#2-使用-open-方法，初始化请求参数" class="headerlink" title="2.使用 open 方法，初始化请求参数"></a>2.使用 <code>open</code> 方法，初始化请求参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(method, url, <span class="keyword">async</span>)</span><br></pre></td></tr></table></figure>
+<p>规定请求的类型、URL 以及是否异步处理请求。</p>
+<ul>
+<li>method：请求的类型；<code>GET</code> 或 <code>POST</code></li>
+<li>url：文件在服务器上的位置</li>
+<li>async：true（异步）或 false（同步），默认为 true</li>
+</ul>
+<h4 id="3-使用-send-方法，发送请求"><a href="#3-使用-send-方法，发送请求" class="headerlink" title="3.使用 send 方法，发送请求"></a>3.使用 <code>send</code> 方法，发送请求</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">send(string)</span><br></pre></td></tr></table></figure>
+<p>将请求发送到服务器。<br>string：仅用于 <code>POST</code> 请求</p>
+<h4 id="4-监听-onreadystatechange-，接收返回的数据"><a href="#4-监听-onreadystatechange-，接收返回的数据" class="headerlink" title="4.监听 onreadystatechange ，接收返回的数据"></a>4.监听 <code>onreadystatechange</code> ，接收返回的数据</h4><p>每当 <code>readyState</code> 改变时，就会触发 <code>onreadystatechange</code> 事件<br><code>readyState</code>从 0 到 4 发生变化</p>
+<ul>
+<li>0: <strong>未初始化</strong>，尚未调用 <code>open()</code> 方法</li>
+<li>1: 启动，已调用 <code>open()</code> 方法，但未调用 <code>send()</code> 方法</li>
+<li>2: 发送，已调用 <code>send()</code> 方法，但<strong>未收到响应</strong></li>
+<li>3: 接收，接收到<strong>部分</strong>响应数据</li>
+<li>4: 完成，接收到<strong>全部</strong>响应数据，并可以使用</li>
+</ul>
+<p><code>status</code><br>成功状态码</p>
+<ul>
+<li>200：服务器<strong>成功</strong>返回内容</li>
+<li>301：<strong>临时</strong>重定向</li>
+<li>302：<strong>永久</strong>重定向</li>
+<li>304：请求资源<strong>未被修改</strong>，可以<strong>使用</strong>浏览器<strong>缓存数据</strong></li>
+</ul>
+<p>失败状态码</p>
+<ul>
+<li>404：请求内容不存在</li>
+<li>500：服务器暂时不可用</li>
+</ul>
+<h3 id="封装AJAX"><a href="#封装AJAX" class="headerlink" title="封装AJAX"></a>封装AJAX</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxFunc</span> (<span class="params">method, url, data, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> xhr = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">        xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'microsoft.XMLHttp'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    method = method.toUpperCase();<span class="comment">//转为大写字母方便判断</span></span><br><span class="line">    <span class="keyword">if</span>(method === <span class="string">'GET'</span>) &#123;</span><br><span class="line">        xhr.open(<span class="string">'GET'</span>, url + <span class="string">'?'</span> + data, <span class="literal">true</span>);<span class="comment">//GET请求 传递数据是拼接在url后面的</span></span><br><span class="line">        xhr.send();</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(method === <span class="string">'POST'</span>) &#123;</span><br><span class="line">        xhr.open(<span class="string">'POST'</span>, url, <span class="literal">true</span>);</span><br><span class="line">        xhr.setRequestHeader(<span class="string">'Content-type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);<span class="comment">//POST请求还需设置请求头</span></span><br><span class="line">        xhr.send(data)<span class="comment">//POST请求 传递数据是放在send里</span></span><br><span class="line">    &#125;</span><br><span class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span>) &#123;</span><br><span class="line">            callback(xhr.responseText)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="GET、POST区别"><a href="#GET、POST区别" class="headerlink" title="GET、POST区别"></a>GET、POST区别</h3><ol>
+<li>方式：get是将参数直接添加到<strong>url后面</strong>，而post是将参数放在请求的<strong>表单体</strong>内</li>
+<li>大小：get传送的数据量较小，<strong>不能大于2KB</strong>。post传送的数据量较大，一般被默认为<strong>不受限制</strong>。</li>
+<li>安全性：get安全性<strong>非常低</strong>，post安全性<strong>较高</strong></li>
+</ol>
+<h3 id="安全限制"><a href="#安全限制" class="headerlink" title="安全限制"></a>安全限制</h3><p>遵循浏览器的<strong>同源策略</strong>（协议、域名、端口一致）</p>
+<h2 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a>2.JSONP</h2><p>可以实现<strong>跨域</strong><br>只能用 <code>GET</code> 请求，并且要求返回 <code>JavaScript</code><br>页面中先准备好doJson()处理函数，然后给页面动态加一个 <code>&lt;script&gt;</code> 节点，相当于动态读取外域的JavaScript资源，最后就等着接收回调了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oScript = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line"><span class="comment">//动态添加&lt;script&gt;节点</span></span><br><span class="line"></span><br><span class="line">oScript.src = <span class="string">'https://xxxx'</span> + <span class="string">'&amp;cb = doJson'</span>; </span><br><span class="line"><span class="comment">//其中cb参数则告诉服务器，我的本地回调函数叫做doJson，所以请把查询结果传入这个函数中进行调用。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(oScript);</span><br><span class="line"><span class="comment">// 把script标签加入head，此时调用开始</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doJson</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//处理代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-AJAX和JSONP异同"><a href="#3-AJAX和JSONP异同" class="headerlink" title="3.AJAX和JSONP异同"></a>3.AJAX和JSONP异同</h2><ol>
+<li>同：都是请求一个url，将返回的数据进行处理</li>
+<li>异：ajax 遵循同源策略，<strong>不能</strong>实现跨域，而json<strong>可以跨域</strong></li>
+<li>异：ajax 能用get和post请求，而<strong>jsonp只能用get</strong></li>
+<li>异：ajax的核心是通过 <code>XMLHttpRequest</code> 获取非本页内容，而jsonp的核心则是<strong>动态添加</strong></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/07/Promise%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="YoursJoker">
+      <meta itemprop="description" content="精神领袖-窃格拉瓦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoursJoker的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/07/Promise%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">Promise对象</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-07 10:40:19 / 修改时间：11:09:53" itemprop="dateCreated datePublished" datetime="2020-08-07T10:40:19+08:00">2020-08-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES6总结系列之-Promise对象-篇"><a href="#ES6总结系列之-Promise对象-篇" class="headerlink" title="ES6总结系列之 Promise对象 篇"></a>ES6总结系列之 Promise对象 篇</h1><hr>
+<h2 id="1-含义"><a href="#1-含义" class="headerlink" title="1. 含义"></a>1. 含义</h2><h3 id="何为-Promise"><a href="#何为-Promise" class="headerlink" title="何为 Promise?"></a>何为 Promise?</h3><p><code>Promise</code> 是异步编程的一种解决方案<br><code>Promise</code> 简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果</p>
+<h3 id="Promise-两个特点"><a href="#Promise-两个特点" class="headerlink" title="Promise 两个特点:"></a>Promise 两个特点:</h3><p>①对象的<strong>状态不受外界影响</strong>，只有异步操作的结果，可以决定当前是那种状态pending(进行中), fulfilled(已成功), rejected(已失败)<br>②状态<strong>只改变一次</strong>，状态转变只有两种可能，改变后称resolved(定型)<br>1)pending –&gt; fulfilled<br>2)pending –&gt; rejected</p>
+<h3 id="Promise-三个缺点"><a href="#Promise-三个缺点" class="headerlink" title="Promise 三个缺点:"></a>Promise 三个缺点:</h3><p>①无法取消Promise, 一旦新建它就会立即执行，<strong>无法中途取消</strong><br>②如果不设置回调函数，Promise内部抛出的错误，不会反应到外部<br>③当处于pending状态时，无法得知<strong>目前进展</strong>到<strong>哪一个阶段</strong>（刚刚开始还是即将完成）</p>
+<h2 id="2-基本用法"><a href="#2-基本用法" class="headerlink" title="2. 基本用法"></a>2. 基本用法</h2><p><code>Promise</code> 对象是一个<strong>构造函数</strong>，用来生成 <code>Promise</code> 实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;&#125;);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建实例<br>①<code>resolve</code>, <code>reject</code>是<strong>两个函数</strong>，有JavaScript引擎提供<br>②<code>resolve</code>作用，将Promise状态从“未完成”变为“成功”，即从pending转为resolved<br>③<code>reject</code>作用，从pending转为rejected<br>④<code>resolve</code>,<code>reject</code> 都可<strong>向外传出参数</strong></li>
+</ol>
+<ol start="2">
+<li>实例生成后，可以用then方法分别指定resolved状态和rejected状态的回调函数，第二个参数<strong>可不传</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;<span class="comment">//value为resolve(value)中传出的</span></span><br><span class="line">  <span class="comment">// success&#125;, </span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;<span class="comment">//error为reject(error)中传出的</span></span><br><span class="line">  <span class="comment">// failure&#125;);</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="3-Promise-prototype-then"><a href="#3-Promise-prototype-then" class="headerlink" title="3. Promise.prototype.then()"></a>3. Promise.prototype.then()</h2><p><code>then</code> 方法<strong>返回</strong>的是一个新的Promise<strong>实例</strong>，可<strong>链式调用</strong>，并将<strong>return的返回值</strong>作<strong>为参数</strong>传入第二个回调函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getJSON(<span class="string">"/posts.json"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> json.post;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Promise-prototype-catch"><a href="#4-Promise-prototype-catch" class="headerlink" title="4. Promise.prototype.catch()"></a>4. Promise.prototype.catch()</h2><p>catch方法是.then(null, rejection)或.then(undefined, rejection)的别名，用于<strong>指定发生错误时的回调函数</strong>。<br>一般来说，<strong>不要在then()方法里面定义 Reject 状态的回调函数</strong>（即then的第二个参数），总是使用catch方法。<strong>理由是</strong>第二种写法可以捕获前面then方法执行中的错误，也更接近同步的写法（try/catch）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// badpromise</span></span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// success  </span></span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// error  </span></span><br><span class="line">  &#125;);</span><br><span class="line">  </span><br><span class="line"><span class="comment">// goodpromise</span></span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">     <span class="comment">//cb    // success  </span></span><br><span class="line">  &#125;)	</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// error  </span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Promise-prototype-finally"><a href="#5-Promise-prototype-finally" class="headerlink" title="5. Promise.prototype.finally()"></a>5. Promise.prototype.finally()</h2><p>finally()方法用于指定<strong>不管</strong> Promise 对象最后<strong>状态如何</strong>，<strong>都会执行</strong>的操作。该方法是 ES2018 引入标准的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;···&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
+<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/06/%E9%98%B2%E6%8A%96%E3%80%81%E8%8A%82%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,252 +1383,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/04/02/BFC-MarginCollapse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/02/BFC-MarginCollapse/" class="post-title-link" itemprop="url">你不知道的CSS之BFC和margin塌陷</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-02 00:20:53" itemprop="dateCreated datePublished" datetime="2020-04-02T00:20:53+08:00">2020-04-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-05 17:41:44" itemprop="dateModified" datetime="2020-08-05T17:41:44+08:00">2020-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS%E7%89%B9%E5%88%AB%E7%AF%87/" itemprop="url" rel="index"><span itemprop="name">CSS特别篇</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSS之BFC，margin塌陷篇"><a href="#CSS之BFC，margin塌陷篇" class="headerlink" title="CSS之BFC，margin塌陷篇"></a>CSS之BFC，margin塌陷篇</h2><p>大家好，我是YoursJoker，想要走出大山的一个小菜鸟，今天将用简单易懂的语言，让大家快速了解和掌握CSS中的BFC和margin塌陷（本人新手一枚，各位大佬们多多包涵）</p>
-<h3 id="何为BFC"><a href="#何为BFC" class="headerlink" title="何为BFC"></a>何为BFC</h3><p>BFC就是块级格式化上下文<code>block formatting context</code></p>
-<hr>
-<h3 id="BFC特性："><a href="#BFC特性：" class="headerlink" title="BFC特性："></a>BFC特性：</h3><ul>
-<li>BFC就是页面上的一个<strong>隔离的独立容器</strong>，容器里的子元素不会影响到外面的元素</li>
-<li>计算BFC高度时，浮动元素会被计算进去，可用于<strong>清除浮动</strong></li>
-<li>内部的Box会在垂直方向，从顶部开始一个接一个的放置，相当于文档流</li>
-<li>Box垂直方向的距离由margin决定，会<strong>叠加</strong>，而不是取<code>margin-bottom</code>和<code>margin-top</code>的最大值，可<strong>解决margin塌陷</strong>，关于margin塌陷滑下手指就能看到啦</li>
-</ul>
-<hr>
-<h3 id="触发bfc条件"><a href="#触发bfc条件" class="headerlink" title="触发bfc条件"></a>触发bfc条件</h3><ul>
-<li>position：absolute/fixed</li>
-<li>display:inline-block</li>
-<li>float:right/left</li>
-<li>overflow:不为visible(<code>scroll</code>/<code>hidden</code>/<code>auto</code>)</li>
-</ul>
-<hr>
-<h3 id="margin塌陷"><a href="#margin塌陷" class="headerlink" title="margin塌陷"></a>margin塌陷</h3><ul>
-<li>兄弟元素：<strong>垂直方向</strong>的<code>margin</code>会出现合并，即只取前一个元素margin-bottom或后一个元素margin-top两者的较大值；<strong>水平方向</strong>不会出现合并，会正常叠加</li>
-<li>父子元素：子元素设置<code>margin-top</code>时会忽视父元素上边,有点像挡不住子元素，子元素“逃”出去了，干说不是很很清楚，直接上代码吧<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"father"</span>&gt;              //父元素红色</span><br><span class="line">	&lt;div class=<span class="string">"son"</span>&gt;&lt;/div&gt;     //子元素黑色</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.father&#123;</span><br><span class="line">	width: 200px;</span><br><span class="line">	height: 200px;</span><br><span class="line">	background-color: <span class="comment">#f00;</span></span><br><span class="line">	&#125;</span><br><span class="line">.item1&#123;</span><br><span class="line">	margin-top: 20px;         //子元素设置margin-top</span><br><span class="line">	width: 50px;</span><br><span class="line">	height: 50px;</span><br><span class="line">	background-color: <span class="comment">#000;</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/04/02/BFC-MarginCollapse/margin1.png" class title="理想中的样子"><img src="/2020/04/02/BFC-MarginCollapse/margin2.png" class title="可现实呜呜呜">
-<img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db2299cfdc0?w=252&h=252&f=png&s=1824" alt title="理想中的样子"> <img src="https://user-gold-cdn.xitu.io/2020/4/2/17136db4bffaab8f?w=250&h=281&f=png&s=1773" alt title="可现实呜呜呜"><br>理想的样子是子元素距离父元素上边距<code>20px</code>,可实际是子元素直接“忽略”了父元素<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3></li>
-<li>最直接给父元素设置<code>border-wide</code>，可我们往往不需要这个边框，影响美观，这时就可采用下面这种方法</li>
-<li>可用前面所讲的bfc解决margin塌陷问题</li>
-</ul>
-<hr>
-<ul>
-<li>浮动元素产生了浮动流：所有产生了浮动流的元素，块级元素看不到他们</li>
-<li>产生了bfc的元素、文本类型属性(包括<code>inline</code> <code>inline-block</code>的）文本都能看到浮动元素(图片配合float可以形成环绕文字的效果哦！)。</li>
-<li>设置了<code>position:absolute</code>和<code>float:left/right</code>的元素会变成inline-block元素</li>
-</ul>
-<p><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎stars鼓励一下<br><a href https: yoursjoker.github.io "">个人博客</a>，刚建立不久的博客，有空的大佬可以过来提提建议</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">let,const ES6入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-31 16:32:29 / 修改时间：19:15:47" itemprop="dateCreated datePublished" datetime="2020-03-31T16:32:29+08:00">2020-03-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star（目前是真空的，我会加油逐步完善）</p>
-<h2 id="let命令和const命令"><a href="#let命令和const命令" class="headerlink" title="let命令和const命令"></a>let命令和const命令</h2><p>ES6新增的<code>let</code>命令和<code>const</code>命令和<code>var</code>类似，都是用来<code>声明变量</code>的</p>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
-<li><code>let</code> <code>const</code>只在声明的<code>块级作用域</code>生效</li>
-</ul>
-<blockquote>
-<ol>
-<li>在ES6之前只有 <em>全局作用域</em> 和 <em>函数作用域</em></li>
-<li>ES6新增了大括号{}表示的块级作用域，可嵌套</li>
-</ol>
-</blockquote>
-<ul>
-<li><code>let</code> <code>const</code>预编译声明不会提前</li>
-</ul>
-<blockquote>
-<ol>
-<li><strong>暂时性死区</strong>temporal dead zone简称 TDZ，当使用<code>let</code> <code>const</code>命令时，区块中的<code>let</code> <code>const</code>命令声明的变量从一开始就形成了封闭作用域，凡是在<strong>声明前使用</strong>都会报错</li>
-<li><strong>特别注意</strong>：声明前使用typeof也会报错，而ES6之前typeof是一个绝对安全的函数</li>
-</ol>
-</blockquote>
-<ul>
-<li>不可以重复定义<blockquote>
-<ol>
-<li><code>let</code> <code>const</code>在同一个代码块不可以重复定义，否则会报错</li>
-</ol>
-</blockquote>
-<h3 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h3></li>
-</ul>
-<p>1.<code>for</code>循环中用<code>let</code>声明的迭代变量每次都是<strong>新的变量</strong>，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">  a[i] = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">a[6](); // 6</span><br></pre></td></tr></table></figure>
-<p>每一次循环的i其实都是一个<strong>新的变量</strong>,<code>JavaScript</code><strong>引擎内部</strong>会记住上一轮循环的值，初始化本轮的变量i时，就在上一轮循环的基础上进行计算</p>
-<p>2.<code>for</code>循环还有一个特别之处，就是设置循环变量的那部分是一个<strong>父作用域</strong>，而循环体内部是一个单独的<strong>子作用域</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">let</span> i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">  <span class="built_in">let</span> i = <span class="string">'abc'</span>;</span><br><span class="line">  console.log(i);&#125;</span><br><span class="line">// abc// abc// abc</span><br></pre></td></tr></table></figure>
-<p><code>a</code>声明了两次，表明函数内部的变量<code>i</code>与循环变量<code>i</code>不在同一个作用域，有各自单独的作用域</p>
-<h3 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a>const命令</h3><p><code>const</code>命令定义时<strong>必须初始化</strong><br><code>const</code>定义的变量为原始值时不可改变，为引用值时对象的属性可以改</p>
-<p>###顶层对象的属性</p>
-<ol>
-<li>在浏览器环境指的是<code>window</code>对象，<code>window</code>也有实体含义，指的是<strong>浏览器的窗口对象</strong></li>
-<li>在Node指的是<code>global</code>对象</li>
-<li><strong>ES5</strong>中<strong>顶层对象的属性</strong>和<strong>全局变量</strong>是<strong>等价</strong>的</li>
-<li>ES6中为了保持兼容性<br>①<code>var</code>命令和<code>function</code>命令声明的全局变量，<strong>依旧是</strong>顶层对象的属性<br>②<code>let</code>命令,<code>const</code>命令,<code>class</code>命令声明的全局变量，<strong>不属于顶层对象的属性</strong></li>
-<li><code>globalThis</code>对象，2020新增顶层对象，在<strong>任何环境下<code>globalThis</code>都存在</strong>，都可以拿到顶层对象，指向<strong>全局环境下的this</strong></li>
-</ol>
-<hr>
-<p>ES6入门参考自阮一峰《ES6入门教程》</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1463,7 +1455,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1518,12 +1510,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">23k</span>
+    <span title="站点总字数">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">24 分钟</span>
 </div>
 
         
