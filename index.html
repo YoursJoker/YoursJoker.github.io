@@ -198,6 +198,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/08/%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="YoursJoker">
+      <meta itemprop="description" content="精神领袖-窃格拉瓦">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YoursJoker的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/08/%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95/" class="post-title-link" itemprop="url">对象的扩展</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-08 10:57:52 / 修改时间：12:02:45" itemprop="dateCreated datePublished" datetime="2020-08-08T10:57:52+08:00">2020-08-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ES6总结系列之-对象的扩展-篇"><a href="#ES6总结系列之-对象的扩展-篇" class="headerlink" title="ES6总结系列之 对象的扩展 篇"></a>ES6总结系列之 对象的扩展 篇</h1><hr>
+<h2 id="1-属性、方法简洁表示法"><a href="#1-属性、方法简洁表示法" class="headerlink" title="1. 属性、方法简洁表示法"></a>1. 属性、方法简洁表示法</h2><h3 id="属性简写"><a href="#属性简写" class="headerlink" title="属性简写"></a>属性简写</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> baz = &#123;foo&#125;; <span class="comment">//属性名就是变量名, 属性值就是变量值</span></span><br><span class="line">baz <span class="comment">// &#123;foo: "bar"&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">const</span> baz = &#123;<span class="attr">foo</span>: foo&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="方法简写"><a href="#方法简写" class="headerlink" title="方法简写"></a>方法简写</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  method () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  method: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>简写的对象方法不能用作构造函数，会报错。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  f() &#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="string">'bar'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> obj.f() <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-属性名表达式"><a href="#2-属性名表达式" class="headerlink" title="2. 属性名表达式"></a>2. 属性名表达式</h2><p><strong>JavaScript 定义对象的属性，有两种方法。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法一</span></span><br><span class="line">obj.foo = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">//直接用标识符作为属性名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法二</span></span><br><span class="line">obj[<span class="string">'a'</span> + <span class="string">'bc'</span>] = <span class="number">123</span>;</span><br><span class="line"><span class="comment">//用表达式作为属性名,须将表达式放在方括号之内</span></span><br></pre></td></tr></table></figure>
+<p><strong>①使用字面量方式定义对象（使用大括号），在 ES5 中只能使用方法一（标识符）定义属性。ES6 允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> lastWord = <span class="string">'last word'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  <span class="string">'first word'</span>: <span class="string">'hello'</span>,</span><br><span class="line">  [lastWord]: <span class="string">'world'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">a[<span class="string">'first word'</span>] <span class="comment">// "hello"</span></span><br><span class="line">a[lastWord] <span class="comment">// "world"</span></span><br><span class="line">a[<span class="string">'last word'</span>] <span class="comment">// "world"</span></span><br></pre></td></tr></table></figure>
+<p><strong>②表达式还可以用于定义方法名</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [<span class="string">'h'</span> + <span class="string">'ello'</span>]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hi'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.hello() <span class="comment">// hi</span></span><br></pre></td></tr></table></figure>
+<p><strong>③属性名表达式与简洁表示法，不能同时使用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">const</span> bar = <span class="string">'abc'</span>;</span><br><span class="line"><span class="keyword">const</span> baz = &#123; [foo] &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">const</span> baz = &#123; [foo]: <span class="string">'abc'</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>④属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串[object Object]，这一点要特别小心。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> keyA = &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> keyB = &#123;<span class="attr">b</span>: <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myObject = &#123;</span><br><span class="line">  [keyA]: <span class="string">'valueA'</span>,</span><br><span class="line">  [keyB]: <span class="string">'valueB'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myObject <span class="comment">// Object &#123;[object Object]: "valueB"&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-属性的可枚举和遍历"><a href="#3-属性的可枚举和遍历" class="headerlink" title="3.属性的可枚举和遍历"></a>3.属性的可枚举和遍历</h2><h3 id="可枚举性"><a href="#可枚举性" class="headerlink" title="可枚举性"></a>可枚举性</h3><p><strong>①每个对象都有一个描述对象（Descriptor），来控制属性的行为<br>②用Object.getOwnPropertyDescriptor ()来获取</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">foo</span>: <span class="number">123</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, <span class="string">'foo'</span>)</span><br><span class="line"><span class="comment">//  &#123;</span></span><br><span class="line">	<span class="comment">//    value: 123,</span></span><br><span class="line">	<span class="comment">//    writable: true,</span></span><br><span class="line">	<span class="comment">//    enumerable: true,</span></span><br><span class="line">	<span class="comment">//    configurable: true</span></span><br><span class="line"><span class="comment">//  &#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>③enumerable为false时，为不可枚举，四种操作会忽略enumerable为false的属性</strong><br>1)<code>for...in</code> 循环                返回自身和继承的可枚举属性<br>2)<code>Object.keys(obj)</code>                 返回可枚举的key数组<br>3)<code>JSON.stringify()</code>                     串化可枚举的属性<br>4)<code>Object.assign()</code>                    拷贝自身可枚举的属性<br>5)其中只有 <code>for...in</code> 会遍历<strong>继承</strong>的属性，其他只遍历自身属性</p>
+<h3 id="属性的遍历"><a href="#属性的遍历" class="headerlink" title="属性的遍历"></a>属性的遍历</h3><p><strong>④五种属性的遍历</strong><br>1)for…in<br>2)Object.keys(obj) 返回数组<br>3)Object.getOwnPropertyNames(obj) 返回数组<br>4)Object.getOwnPropertySymbols(obj) 返回数组<br>5)Reflect.ownKeys(obj) 返回数组<br>6)(1)(2)(3)不含Symbol属性，(4)(5)含Symbol属性，(3)(5)包含不可枚举属性<br><strong>⑤遍历顺序</strong><br>数值键 –&gt; 字符串键 –&gt; Symbol键<br>(数值升序) - (时间升序)  -  (时间升序)</p>
+<h2 id="4-super关键字"><a href="#4-super关键字" class="headerlink" title="4.super关键字"></a>4.super关键字</h2><p>1)指向对象原型<br>2)只能用在对象的方法中<br>3)只能用在对象简写法可以让JavaScript引擎确认，定义的是对象的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proto = &#123;</span><br><span class="line">  foo: <span class="string">'hello'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'world'</span>,</span><br><span class="line">  find() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.foo;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj, proto);</span><br><span class="line">obj.find() <span class="comment">// "hello"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-对象的扩展运算符"><a href="#5-对象的扩展运算符" class="headerlink" title="5.对象的扩展运算符"></a>5.对象的扩展运算符</h2><p>1)解构赋值要求求等号右边是一个对象，所以如果等号右边是undefined或null，就会报错，因为它们无法转为对象<br>2)扩展运算符的解构赋值不能复制继承制原型对象上的属性<br>3)let { x, …{ y, z } } = o;   错误<br>4)解构赋值的拷贝是浅拷贝<br>5)如果有取值函数get，这个函数是会执行的</p>
+<h2 id="6-链判断运算符-ES2020引入"><a href="#6-链判断运算符-ES2020引入" class="headerlink" title="6.链判断运算符 ES2020引入?."></a>6.链判断运算符 ES2020引入<code>?.</code></h2><p>1)const firstName = message?.body?.user?.firstName || ‘default’;<br>2)等号右边的对象如果是null或undefined，就返回undefined，不在往下计算<br>3)三种用法：<br>a.obj?.prop   //对象属性<br>b.obj?.[prop]  //对象属性<br>c.func?.(…args)//函数或对象方法的调用<br>4)右侧不能是十进制数，不然?.不在被看成一个完整的运算符，小数点.会和后面的数字结合成小数，将变成一个三目运算符</p>
+<h2 id="7-Null判断运算符（-）"><a href="#7-Null判断运算符（-）" class="headerlink" title="7.Null判断运算符（??）"></a>7.Null判断运算符（??）</h2><p>1)ES2020 引入了一个新的 Null 判断运算符??。它的行为类似||，但是只有运算符左侧的值为null或undefined时，才会返回右侧的值。 (0和false不生效)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerText = response.settings.headerText ?? <span class="string">'Hello, world!'</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
+<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/07/AJAX%E5%92%8CJSONP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1275,114 +1392,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yoursjoker.github.io/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="YoursJoker">
-      <meta itemprop="description" content="精神领袖-窃格拉瓦">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/03/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" class="post-title-link" itemprop="url">解构赋值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-03 16:06:18 / 修改时间：16:08:59" itemprop="dateCreated datePublished" datetime="2020-08-03T16:06:18+08:00">2020-08-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ES6%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">ES6入门</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ES6总结系列之-变量的解构赋值-篇"><a href="#ES6总结系列之-变量的解构赋值-篇" class="headerlink" title="ES6总结系列之 变量的解构赋值 篇"></a>ES6总结系列之 变量的解构赋值 篇</h1><p>变量的解构赋值：<strong>分解</strong>一个对象的结构，对变量进行<strong>赋值</strong>，前提：等号两边的<strong>模式相同</strong></p>
-<h2 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h2><p>可从数组中提取值，按照<strong>对应位置</strong>，对变量赋值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"> <span class="comment">//a=1,b=2,c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [ , ,c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="comment">//省略赋值  c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a, [[b], c]] = [<span class="number">1</span>, [[<span class="number">2</span>], <span class="number">3</span>]];</span><br><span class="line"><span class="comment">//嵌套解构 a=1,c=2,c=3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [a] = [];</span><br><span class="line"><span class="comment">//结构不成功，变量的的值就等于undefined， 所以a = undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>，j = <span class="number">1</span>] = [<span class="literal">undefined</span>, <span class="literal">null</span>];</span><br><span class="line"><span class="comment">//x = 1; j = null;</span></span><br><span class="line"><span class="comment">//解构指定默认值， 只有严格等于(===)undefined是才起作用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//默认值为表达式时，其求值时惰性的，即需要用时才计算，如下</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'aaa'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> [x = f()] = [<span class="number">1</span>];</span><br><span class="line"><span class="comment">//上面代码中，因为x能取到值，所以函数f根本不会执行。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [];     <span class="comment">// x=1; y=1</span></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [<span class="number">2</span>];    <span class="comment">// x=2; y=2</span></span><br><span class="line"><span class="keyword">let</span> [x = <span class="number">1</span>, y = x] = [<span class="number">1</span>, <span class="number">2</span>]; <span class="comment">// x=1; y=2</span></span><br><span class="line"><span class="keyword">let</span> [x = y, y = <span class="number">1</span>] = [];     <span class="comment">// ReferenceError: y is not defined</span></span><br><span class="line"><span class="comment">//默认值可以引用解构赋值的其他变量，但该变量必须已经声明</span></span><br><span class="line"><span class="comment">//上面最后一个表达式之所以会报错，是因为x用y做默认值时，y还没有声明。</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h2><p>对象的属性<strong>没有次序</strong>，变量必须与属性<strong>同名</strong>，才能取到正确的值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br><span class="line"><span class="comment">//foo = 'aaa';  bar = 'bbb';</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//变量名与属性名不一样,应写成</span></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">foo</span> : a, <span class="attr">bar</span> : b &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br><span class="line"><span class="comment">//a = 'aaa'; b = 'bbb'</span></span><br><span class="line"><span class="comment">//foo = undefined; bar = underfined;</span></span><br><span class="line"><span class="comment">//对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; baz &#125; = &#123; <span class="attr">foo</span>: <span class="string">'aaa'</span>, <span class="attr">bar</span>: <span class="string">'bbb'</span> &#125;;</span><br><span class="line"><span class="comment">//baz = undefined  找不到名为baz的属性</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> &#123;<span class="attr">x</span>: y = <span class="number">3</span>&#125; = &#123;&#125;;</span><br><span class="line"><span class="comment">//y = 3  指定默认值</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串的解构赋值"><a href="#字符串的解构赋值" class="headerlink" title="字符串的解构赋值"></a>字符串的解构赋值</h2><p>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> [a, b, c, d, e] = <span class="string">'hello'</span>;</span><br><span class="line">a <span class="comment">// "h"</span></span><br><span class="line">b <span class="comment">// "e"</span></span><br><span class="line">c <span class="comment">// "l"</span></span><br><span class="line">d <span class="comment">// "l"</span></span><br><span class="line">e <span class="comment">// "o"</span></span><br><span class="line"></span><br><span class="line">类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">length</span> : len&#125; = <span class="string">'hello'</span>;</span><br><span class="line">len <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-<h2 id="数值和布尔值的解构赋值"><a href="#数值和布尔值的解构赋值" class="headerlink" title="数值和布尔值的解构赋值"></a>数值和布尔值的解构赋值</h2><p>解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="number">123</span>;</span><br><span class="line">s === <span class="built_in">Number</span>.prototype.toString <span class="comment">// true</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">toString</span>: s&#125; = <span class="literal">true</span>;</span><br><span class="line">s === <span class="built_in">Boolean</span>.prototype.toString <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>上面代码中，数值和布尔值的包装对象都有toString属性，因此变量s都能取到值。</p>
-<h2 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">[x, y]</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;&#125;)</span><br><span class="line">add([<span class="number">1</span>, <span class="number">2</span>]; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>上面代码中，函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。</p>
-<h2 id="圆括号问题"><a href="#圆括号问题" class="headerlink" title="圆括号问题"></a>圆括号问题</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="comment">// SyntaxError: syntax error</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 特别注意,当大括号位于行首时，JavaScript 引擎会将&#123;x&#125;理解成一个代码块，从而发生语法错误。，可通过加圆括号解决，如下</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123;x&#125; = &#123;<span class="attr">x</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">仅赋值语句的非模式部分，可以使用圆括号。</span><br><span class="line"></span><br><span class="line">[(b)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br><span class="line">(&#123; <span class="attr">p</span>: (d) &#125; = &#123;&#125;); <span class="comment">// 正确</span></span><br><span class="line">[(<span class="built_in">parseInt</span>.prop)] = [<span class="number">3</span>]; <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
-<h2 id="总结要点"><a href="#总结要点" class="headerlink" title="总结要点"></a>总结要点</h2><ul>
-<li>解构赋值<strong>本质</strong>是<strong>对象的解构</strong>，只要等号<strong>右边</strong>的值<strong>不是对象或数组</strong>，就先将其<strong>转为对象</strong>。由于<code>undefined</code>和<code>null</code>无法转为对象，所以对它们进行解构赋值，都会报错。</li>
-<li>只要某种数据结构具有 Iterator 接口，就可以用于数组的解构赋值，如arguments类数组对象，NodeList类数组对象</li>
-<li>对象的解构赋值可以取到<strong>继承的属性</strong></li>
-<li>默认值生效的条件是，解构的值<strong>严格</strong>等于undefined</li>
-<li>仅赋值语句的非模式部分，可以使用圆括号。</li>
-</ul>
-<hr>
-<ul>
-<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star鼓励一下</li>
-<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1455,7 +1464,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1510,12 +1519,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">27k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">24 分钟</span>
+    <span title="站点阅读时长">27 分钟</span>
 </div>
 
         
