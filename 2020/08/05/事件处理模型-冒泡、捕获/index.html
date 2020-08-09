@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="事件冒泡1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）demo1 后面的demo可以结合这个图更好理解htmlhtml代码： 12345&lt;div class&#x3D;&quot;grandfather&quot;&gt;    &lt;div class&#x3D;&quot;father&quot;&gt;      &lt;div class&#x3D;&quot;child&quot;&gt;&lt;&#x2F;div&gt;  &amp;">
+  <meta name="description" content="javascript系列之 事件处理模型-冒泡、捕获 篇事件冒泡1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）demo1 后面的demo可以结合这个图更好理解htmlhtml代码： 12345&lt;div class&#x3D;&quot;grandfather&quot;&gt;    &lt;div class&#x3D;&quot;father&quot;&gt;      &lt;div clas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件处理模型-冒泡、捕获">
 <meta property="og:url" content="https://yoursjoker.github.io/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/index.html">
 <meta property="og:site_name" content="YoursJoker的博客">
-<meta property="og:description" content="事件冒泡1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）demo1 后面的demo可以结合这个图更好理解htmlhtml代码： 12345&lt;div class&#x3D;&quot;grandfather&quot;&gt;    &lt;div class&#x3D;&quot;father&quot;&gt;      &lt;div class&#x3D;&quot;child&quot;&gt;&lt;&#x2F;div&gt;  &amp;">
+<meta property="og:description" content="javascript系列之 事件处理模型-冒泡、捕获 篇事件冒泡1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）demo1 后面的demo可以结合这个图更好理解htmlhtml代码： 12345&lt;div class&#x3D;&quot;grandfather&quot;&gt;    &lt;div class&#x3D;&quot;father&quot;&gt;      &lt;div clas">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yoursjoker.github.io/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7.png">
 <meta property="og:image" content="https://yoursjoker.github.io/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E5%86%92%E6%B3%A11.PNG">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://yoursjoker.github.io/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E9%A1%BA%E5%BA%8F1.PNG">
 <meta property="og:image" content="https://yoursjoker.github.io/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E9%A1%BA%E5%BA%8F2.PNG">
 <meta property="article:published_time" content="2020-08-05T08:15:18.000Z">
-<meta property="article:modified_time" content="2020-08-05T12:23:10.108Z">
+<meta property="article:modified_time" content="2020-08-09T02:33:34.226Z">
 <meta property="article:author" content="YoursJoker">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -231,10 +231,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-05 16:15:18 / 修改时间：20:23:10" itemprop="dateCreated datePublished" datetime="2020-08-05T16:15:18+08:00">2020-08-05</time>
+              <time title="创建时间：2020-08-05 16:15:18" itemprop="dateCreated datePublished" datetime="2020-08-05T16:15:18+08:00">2020-08-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-09 10:33:34" itemprop="dateModified" datetime="2020-08-09T10:33:34+08:00">2020-08-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -270,7 +276,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><h4 id="1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）"><a href="#1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）" class="headerlink" title="1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）"></a>1.当一个元素接收到事件的时候 会把他接收到的事件<strong>传给自己的父级</strong>，一直到window（自底向上）</h4><h4 id="demo1"><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h4><img src="/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7.png" class title="This is an example image">
+        <h1 id="javascript系列之-事件处理模型-冒泡、捕获-篇"><a href="#javascript系列之-事件处理模型-冒泡、捕获-篇" class="headerlink" title="javascript系列之 事件处理模型-冒泡、捕获 篇"></a>javascript系列之 事件处理模型-冒泡、捕获 篇</h1><h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><h4 id="1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）"><a href="#1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）" class="headerlink" title="1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）"></a>1.当一个元素接收到事件的时候 会把他接收到的事件<strong>传给自己的父级</strong>，一直到window（自底向上）</h4><h4 id="demo1"><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h4><img src="/2020/08/05/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%A8%A1%E5%9E%8B-%E5%86%92%E6%B3%A1%E3%80%81%E6%8D%95%E8%8E%B7/%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7.png" class title="This is an example image">
 <p>后面的demo可以结合这个图更好理解<br>html<br>html代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"grandfather"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"father"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>css代码：</p>
@@ -382,7 +388,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.</span> <span class="nav-text">事件冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo1"><span class="nav-number">1.0.2.</span> <span class="nav-text">demo1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-结构上（非视觉上）嵌套关系的元素，会存在事件冒泡的功能（从代码的角度是自底向上一层层冒泡的）"><span class="nav-number">1.0.3.</span> <span class="nav-text">2.结构上（非视觉上）嵌套关系的元素，会存在事件冒泡的功能（从代码的角度是自底向上一层层冒泡的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo2"><span class="nav-number">1.0.4.</span> <span class="nav-text">demo2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件捕获"><span class="nav-number">2.</span> <span class="nav-text">事件捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-结构上（非视觉上）嵌套关系的元素，会存在事件捕获的功能，从父元素（从代码的角度是自底向上一层层冒泡的）"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.结构上（非视觉上）嵌套关系的元素，会存在事件捕获的功能，从父元素（从代码的角度是自底向上一层层冒泡的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo1-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">demo1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo2-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">demo2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先捕获后冒泡"><span class="nav-number">3.</span> <span class="nav-text">先捕获后冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">3.0.1.</span> <span class="nav-text">demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消冒泡"><span class="nav-number">4.</span> <span class="nav-text">取消冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-W3C标准event-stopPropagation"><span class="nav-number">4.0.1.</span> <span class="nav-text">1.W3C标准event.stopPropagation();</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-IE独有event-cancelBubble-ture"><span class="nav-number">4.0.2.</span> <span class="nav-text">2.IE独有event.cancelBubble &#x3D; ture;</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript系列之-事件处理模型-冒泡、捕获-篇"><span class="nav-number">1.</span> <span class="nav-text">javascript系列之 事件处理模型-冒泡、捕获 篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.1.</span> <span class="nav-text">事件冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-当一个元素接收到事件的时候-会把他接收到的事件传给自己的父级，一直到window（自底向上）"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1.当一个元素接收到事件的时候 会把他接收到的事件传给自己的父级，一直到window（自底向上）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo1"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">demo1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-结构上（非视觉上）嵌套关系的元素，会存在事件冒泡的功能（从代码的角度是自底向上一层层冒泡的）"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">2.结构上（非视觉上）嵌套关系的元素，会存在事件冒泡的功能（从代码的角度是自底向上一层层冒泡的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo2"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">demo2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.2.</span> <span class="nav-text">事件捕获</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-结构上（非视觉上）嵌套关系的元素，会存在事件捕获的功能，从父元素（从代码的角度是自底向上一层层冒泡的）"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1.结构上（非视觉上）嵌套关系的元素，会存在事件捕获的功能，从父元素（从代码的角度是自底向上一层层冒泡的）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo1-1"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">demo1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#demo2-1"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">demo2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先捕获后冒泡"><span class="nav-number">1.3.</span> <span class="nav-text">先捕获后冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#demo"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">demo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消冒泡"><span class="nav-number">1.4.</span> <span class="nav-text">取消冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-W3C标准event-stopPropagation"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">1.W3C标准event.stopPropagation();</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-IE独有event-cancelBubble-ture"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">2.IE独有event.cancelBubble &#x3D; ture;</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +404,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -453,12 +459,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">31k</span>
+    <span title="站点总字数">33k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
 </div>
 
         
