@@ -14,21 +14,23 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="ES6总结系列之 模板字符串 篇用法模板字符串由一对反引号标识符组成，${}为取值表达式 1234567let name &#x3D; &quot;Tony&quot;;let age &#x3D; 18 ;name+&quot;今年&quot;+age+&quot;岁&quot; ;&#x2F;&#x2F;&quot;Tony今年18岁&quot;等价于&#96;$&amp;#123;name&amp;#125;今年$&amp;#123;age&amp;#125;岁了&#96;;&#x2F;&#x2F;&quot;Tony今年18岁&quot; 我们用传统写法表达字符串和变量的拼接写法非常冗余，ES">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模板字符串">
 <meta property="og:url" content="https://yoursjoker.github.io/2020/08/03/%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
-<meta property="og:site_name" content="YoursJoker的博客">
+<meta property="og:site_name" content="YoursJokerの博客">
 <meta property="og:description" content="ES6总结系列之 模板字符串 篇用法模板字符串由一对反引号标识符组成，${}为取值表达式 1234567let name &#x3D; &quot;Tony&quot;;let age &#x3D; 18 ;name+&quot;今年&quot;+age+&quot;岁&quot; ;&#x2F;&#x2F;&quot;Tony今年18岁&quot;等价于&#96;$&amp;#123;name&amp;#125;今年$&amp;#123;age&amp;#125;岁了&#96;;&#x2F;&#x2F;&quot;Tony今年18岁&quot; 我们用传统写法表达字符串和变量的拼接写法非常冗余，ES">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-03T08:34:06.000Z">
-<meta property="article:modified_time" content="2020-08-03T08:37:13.372Z">
+<meta property="article:modified_time" content="2020-08-11T05:23:08.878Z">
 <meta property="article:author" content="YoursJoker">
 <meta property="article:tag" content="ES6入门">
 <meta name="twitter:card" content="summary">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title>模板字符串 | YoursJoker的博客</title>
+  <title>模板字符串 | YoursJokerの博客</title>
   
 
 
@@ -88,6 +90,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
+
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -106,10 +109,12 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">YoursJoker的博客</span>
+        <span class="site-title">YoursJokerの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">记录点滴</h1>
+      
   </div>
 
   <div class="site-nav-right">
@@ -130,17 +135,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>日志</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>日志<span class="badge">18</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -210,7 +210,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
+      <meta itemprop="name" content="YoursJokerの博客">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -223,10 +223,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-03 16:34:06 / 修改时间：16:37:13" itemprop="dateCreated datePublished" datetime="2020-08-03T16:34:06+08:00">2020-08-03</time>
+              <time title="创建时间：2020-08-03 16:34:06" itemprop="dateCreated datePublished" datetime="2020-08-03T16:34:06+08:00">2020-08-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-11 13:23:08" itemprop="dateModified" datetime="2020-08-11T13:23:08+08:00">2020-08-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -265,6 +271,7 @@
         <h1 id="ES6总结系列之-模板字符串-篇"><a href="#ES6总结系列之-模板字符串-篇" class="headerlink" title="ES6总结系列之 模板字符串 篇"></a>ES6总结系列之 模板字符串 篇</h1><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>模板字符串由一对<strong>反引号</strong>标识符组成，<code>${}</code>为取值表达式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Tony"</span>;</span><br><span class="line"><span class="keyword">let</span> age = <span class="number">18</span> ;</span><br><span class="line">name+<span class="string">"今年"</span>+age+<span class="string">"岁"</span> ;</span><br><span class="line"><span class="comment">//"Tony今年18岁"</span></span><br><span class="line">等价于</span><br><span class="line"><span class="string">`<span class="subst">$&#123;name&#125;</span>今年<span class="subst">$&#123;age&#125;</span>岁了`</span>;</span><br><span class="line"><span class="comment">//"Tony今年18岁"</span></span><br></pre></td></tr></table></figure>
 <p>我们用传统写法表达字符串和变量的拼接写法非常冗余，ES6的模板字符串就可以很好的解决这个问题</p>
+<a id="more"></a>
 <h3 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h3><ul>
 <li>模板字符串中如需用反引号，需要用\转义<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"Tony"</span>;</span><br><span class="line"><span class="keyword">let</span> age = <span class="number">18</span>;</span><br><span class="line"><span class="string">`\`<span class="subst">$&#123;name&#125;</span>\`今年<span class="subst">$&#123;age&#125;</span>岁`</span>;</span><br><span class="line"><span class="comment">//"`Tony`今年18岁"</span></span><br></pre></td></tr></table></figure></li>
 <li>如果大括号里面的值不是字符串，则按照一般规则装换为字符（toString方法），特别注意的是，如果大括号里面是对象，则将返回<code>[object Object]</code>,如下面代码</li>
@@ -307,6 +314,19 @@
     
     
 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+ 
+
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/ES6%E5%85%A5%E9%97%A8/" rel="tag"># ES6入门</a>
@@ -327,6 +347,7 @@
     </a></div>
     </div>
       </footer>
+    
     
   </article>
   
@@ -400,7 +421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -411,10 +432,8 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
         <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -455,12 +474,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">33k</span>
+    <span title="站点总字数">36k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">33 分钟</span>
 </div>
 
         
@@ -526,6 +545,12 @@
   
 
   
+
+  
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
 
 </body>
 </html>

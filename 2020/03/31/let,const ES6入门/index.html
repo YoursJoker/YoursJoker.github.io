@@ -14,21 +14,23 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"yoursjoker.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）个人Blog：https:&#x2F;&#x2F;yoursjoker.github.io&#x2F; 刚建立，求有空大佬们过来提提意见github:https:&#x2F;&#x2F;github.com&#x2F;YoursJoker 欢迎star（目前是真空的，我会加油逐步完善） let命令和const命令ES6新增的let命令和const命令和var类似，">
+  <meta name="description" content="大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）个人Blog：https:&#x2F;&#x2F;yoursjoker.github.io&#x2F; 刚建立，求有空大佬们过来提提意见github:https:&#x2F;&#x2F;github.com&#x2F;YoursJoker 欢迎star let命令和const命令ES6新增的let命令和const命令和var类似，都是用来声明变量的 区别 let">
 <meta property="og:type" content="article">
 <meta property="og:title" content="let,const ES6入门">
 <meta property="og:url" content="https://yoursjoker.github.io/2020/03/31/let,const%20ES6%E5%85%A5%E9%97%A8/index.html">
-<meta property="og:site_name" content="YoursJoker的博客">
-<meta property="og:description" content="大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）个人Blog：https:&#x2F;&#x2F;yoursjoker.github.io&#x2F; 刚建立，求有空大佬们过来提提意见github:https:&#x2F;&#x2F;github.com&#x2F;YoursJoker 欢迎star（目前是真空的，我会加油逐步完善） let命令和const命令ES6新增的let命令和const命令和var类似，">
+<meta property="og:site_name" content="YoursJokerの博客">
+<meta property="og:description" content="大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）个人Blog：https:&#x2F;&#x2F;yoursjoker.github.io&#x2F; 刚建立，求有空大佬们过来提提意见github:https:&#x2F;&#x2F;github.com&#x2F;YoursJoker 欢迎star let命令和const命令ES6新增的let命令和const命令和var类似，都是用来声明变量的 区别 let">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-31T08:32:29.000Z">
-<meta property="article:modified_time" content="2020-03-31T11:15:47.881Z">
+<meta property="article:modified_time" content="2020-08-11T05:25:00.630Z">
 <meta property="article:author" content="YoursJoker">
 <meta property="article:tag" content="ES6入门">
 <meta name="twitter:card" content="summary">
@@ -45,7 +47,7 @@
   };
 </script>
 
-  <title>let,const ES6入门 | YoursJoker的博客</title>
+  <title>let,const ES6入门 | YoursJokerの博客</title>
   
 
 
@@ -88,6 +90,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
+
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -106,10 +109,12 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">YoursJoker的博客</span>
+        <span class="site-title">YoursJokerの博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <h1 class="site-subtitle" itemprop="description">记录点滴</h1>
+      
   </div>
 
   <div class="site-nav-right">
@@ -130,17 +135,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>日志</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>日志<span class="badge">18</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -210,7 +210,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YoursJoker的博客">
+      <meta itemprop="name" content="YoursJokerの博客">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
@@ -223,10 +223,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-31 16:32:29 / 修改时间：19:15:47" itemprop="dateCreated datePublished" datetime="2020-03-31T16:32:29+08:00">2020-03-31</time>
+              <time title="创建时间：2020-03-31 16:32:29" itemprop="dateCreated datePublished" datetime="2020-03-31T16:32:29+08:00">2020-03-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-11 13:25:00" itemprop="dateModified" datetime="2020-08-11T13:25:00+08:00">2020-08-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -262,7 +268,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star（目前是真空的，我会加油逐步完善）</p>
+        <p>大家好我是YoursJoker，一个知道很多关于鲁迅名言的前端小萌新，可能鲁迅不会承认（哈哈）<br>个人Blog：<a href="https://yoursjoker.github.io/">https://yoursjoker.github.io/</a> 刚建立，求有空大佬们过来提提意见<br>github:<a href="https://github.com/YoursJoker" target="_blank" rel="noopener">https://github.com/YoursJoker</a> 欢迎star</p>
 <h2 id="let命令和const命令"><a href="#let命令和const命令" class="headerlink" title="let命令和const命令"></a>let命令和const命令</h2><p>ES6新增的<code>let</code>命令和<code>const</code>命令和<code>var</code>类似，都是用来<code>声明变量</code>的</p>
 <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
 <li><code>let</code> <code>const</code>只在声明的<code>块级作用域</code>生效</li>
@@ -288,6 +294,7 @@
 <li><code>let</code> <code>const</code>在同一个代码块不可以重复定义，否则会报错</li>
 </ol>
 </blockquote>
+<a id="more"></a>
 <h3 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h3></li>
 </ul>
 <p>1.<code>for</code>循环中用<code>let</code>声明的迭代变量每次都是<strong>新的变量</strong>，</p>
@@ -314,6 +321,19 @@
     
     
 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+ 
+
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/ES6%E5%85%A5%E9%97%A8/" rel="tag"># ES6入门</a>
@@ -334,6 +354,7 @@
     </a></div>
     </div>
       </footer>
+    
     
   </article>
   
@@ -407,7 +428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -418,10 +439,8 @@
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
         <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -462,12 +481,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">33k</span>
+    <span title="站点总字数">36k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">30 分钟</span>
+    <span title="站点阅读时长">33 分钟</span>
 </div>
 
         
@@ -533,6 +552,12 @@
   
 
   
+
+  
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
 
 </body>
 </html>
