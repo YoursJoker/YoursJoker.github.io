@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Class的基本语法上(es6)</title>
+    <url>/2020/09/03/Class%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8A-es6/</url>
+    <content><![CDATA[<h1 id="ES6总结系列之-class-上-篇"><a href="#ES6总结系列之-class-上-篇" class="headerlink" title="ES6总结系列之 class(上) 篇"></a>ES6总结系列之 class(上) 篇</h1><h2 id="1-何为class"><a href="#1-何为class" class="headerlink" title="1.何为class"></a>1.何为class</h2><ol>
+<li>ES6 的 <code>class</code> 完全可以看作构造函数的<strong>另一种写法</strong>，使用的时候，也是直接对类使用new命令，跟构造函数的用法完全一致</li>
+<li><code>class</code> 也可以看作只是一个<strong>语法糖</strong>，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已</li>
+</ol>
+<h2 id="2-基本用法"><a href="#2-基本用法" class="headerlink" title="2.基本用法"></a>2.基本用法</h2><p>我们先来看一个例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">p.x; <span class="comment">//1</span></span><br><span class="line">p.y; <span class="comment">//2</span></span><br><span class="line">p.toString(); <span class="comment">//(1, 2)</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>this</code>关键字代表<strong>实例对象</strong></p>
+</li>
+<li><p><code>constructor</code>为构造方法, 通过 <code>new</code> 命令生成实例时自动被调用， 没有显式定义时一个空的 <code>constructor</code> 会被默认添加, <code>constructor</code> 方法默认返回实例对象（即this）</p>
+</li>
+<li><p>定义类方法<strong>不需要</strong>关键字<code>function</code></p>
+</li>
+<li><p>方法之间<strong>不需要逗号分隔</strong>，加了会报错</p>
+</li>
+<li><p>类的所有方法都定义在类的<code>prototype</code>属性上面</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toValue() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"></span><br><span class="line">Point.prototype = &#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;&#125;,</span><br><span class="line">  toString() &#123;&#125;,</span><br><span class="line">  toValue() &#123;&#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><code>prototype</code> 对象的 <code>constructor</code> 属性，直接指向“类”的本身，这与 ES5 的行为是一致的</li>
+<li>类的内部所有定义的<strong>方法</strong>，都是<strong>不可枚举的</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo()</span><br><span class="line"><span class="comment">// TypeError: Class constructor Foo cannot be invoked without 'new'</span></span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><code>class</code> <strong>必须</strong>使用 <code>new</code> 调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用 new 也可以执行</li>
+</ol>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
+<li>类和模块内部，<strong>默认</strong>就是<strong>严格模式</strong></li>
+<li>类<strong>不存在变量提升</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> Foo(); <span class="comment">// ReferenceError</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>name 属性返回 class 关健字后面的类名</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;&#125;</span><br><span class="line">Point.name <span class="comment">// "Point"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>如果某个方法之前加上星号（*），就表示该方法是一个 Generator 函数<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">    <span class="keyword">this</span>.args = args;</span><br><span class="line">  &#125;</span><br><span class="line">  * [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> arg <span class="keyword">of</span> <span class="keyword">this</span>.args) &#123;</span><br><span class="line">      <span class="keyword">yield</span> arg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> x <span class="keyword">of</span> <span class="keyword">new</span> Foo(<span class="string">'hello'</span>, <span class="string">'world'</span>)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// hello</span></span><br><span class="line"><span class="comment">// world</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><ol>
+<li><code>this</code>关键字代表<strong>实例对象</strong></li>
+<li><code>constructor</code>为构造方法, 通过 <code>new</code> 命令生成实例时自动被调用， 没有显式定义时一个空的 <code>constructor</code> 会被默认添加, <code>constructor</code> 方法默认返回实例对象（即this）</li>
+<li>定义类方法<strong>不需要</strong>关键字<code>function</code></li>
+<li>方法之间<strong>不需要逗号分隔</strong>，加了会报错</li>
+<li>类的所有方法都定义在类的<code>prototype</code>属性上面</li>
+<li><code>prototype</code> 对象的 <code>constructor</code> 属性，直接指向“类”的本身，这与 ES5 的行为是一致的</li>
+<li>类的内部所有定义的<strong>方法</strong>，都是<strong>不可枚举的</strong></li>
+<li><code>class</code> <strong>必须</strong>使用 <code>new</code> 调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用 new 也可以执行<h3 id="注意要点"><a href="#注意要点" class="headerlink" title="注意要点"></a>注意要点</h3></li>
+<li>类和模块内部，<strong>默认</strong>就是<strong>严格模式</strong></li>
+<li>类<strong>不存在变量提升</strong></li>
+<li>name 属性返回 class 关健字后面的<strong>类名</strong></li>
+<li>如果某个方法之前加上星号（*），就表示该方法是一个 Generator 函数</li>
+</ol>
+<hr>
+<p>欢迎star，持续更新ing…<br>ES6总结系列参考自阮一峰《ES6入门教程》</p>
+]]></content>
+      <categories>
+        <category>ES6入门</category>
+      </categories>
+      <tags>
+        <tag>ES6入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>new的模拟实现</title>
     <url>/2020/08/27/new%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<h1 id="javascript系列之-new的模拟实现-篇"><a href="#javascript系列之-new的模拟实现-篇" class="headerlink" title="javascript系列之 new的模拟实现 篇"></a>javascript系列之 new的模拟实现 篇</h1><blockquote>
@@ -122,31 +195,6 @@
       <categories>
         <category>javascript</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Class的基本语法</title>
-    <url>/2020/08/10/Class%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="ES6总结系列之-Class的基本语法-篇"><a href="#ES6总结系列之-Class的基本语法-篇" class="headerlink" title="ES6总结系列之 Class的基本语法 篇"></a>ES6总结系列之 Class的基本语法 篇</h1><h3 id="1-this关键字则代表实例对象"><a href="#1-this关键字则代表实例对象" class="headerlink" title="1.this关键字则代表实例对象"></a>1.<code>this</code>关键字则代表实例对象</h3><h3 id="2-方法之间不需要逗号分隔，加了会报错"><a href="#2-方法之间不需要逗号分隔，加了会报错" class="headerlink" title="2.方法之间不需要逗号分隔，加了会报错"></a>2.方法之间不需要逗号分隔，加了会报错</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="3-类的数据类型就是函数，类本身就指向构造函数"><a href="#3-类的数据类型就是函数，类本身就指向构造函数" class="headerlink" title="3.类的数据类型就是函数，类本身就指向构造函数"></a>3.类的数据类型就是函数，类本身就指向构造函数</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> Point <span class="comment">// "function"</span></span><br><span class="line">Point === Point.prototype.constructor <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-类的所有方法都定义在类的prototype属性上面。"><a href="#4-类的所有方法都定义在类的prototype属性上面。" class="headerlink" title="4.类的所有方法都定义在类的prototype属性上面。"></a>4.类的所有方法都定义在类的prototype属性上面。</h3><p>类的新方法可以添加在prototype对象上面。Object.assign方法可以很方便地一次向类添加多个方法。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>()&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.assign(Point.prototype, &#123;</span><br><span class="line">  toString()&#123;&#125;,</span><br><span class="line">  toValue()&#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="5-类的内部所有定义的方法，都是不可枚举的（non-enumerable）"><a href="#5-类的内部所有定义的方法，都是不可枚举的（non-enumerable）" class="headerlink" title="5.类的内部所有定义的方法，都是不可枚举的（non-enumerable）"></a>5.类的内部所有定义的方法，都是不可枚举的（non-enumerable）</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(Point.prototype)</span><br><span class="line"><span class="comment">// []</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(Point.prototype)</span><br><span class="line"><span class="comment">// ["constructor","toString"]</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-constructor方法默认返回实例对象（即this），也可以指定返回另外一个对象"><a href="#6-constructor方法默认返回实例对象（即this），也可以指定返回另外一个对象" class="headerlink" title="6.constructor方法默认返回实例对象（即this），也可以指定返回另外一个对象"></a>6.constructor方法默认返回实例对象（即this），也可以指定返回另外一个对象</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Foo() <span class="keyword">instanceof</span> Foo</span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-类必须使用new调用，否则会报错"><a href="#6-类必须使用new调用，否则会报错" class="headerlink" title="6.类必须使用new调用，否则会报错"></a>6.类必须使用new调用，否则会报错</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Foo()</span><br><span class="line"><span class="comment">// TypeError: Class constructor Foo cannot be invoked without 'new'</span></span><br></pre></td></tr></table></figure>
-<h3 id="7-存值函数和取值函数是设置在属性的-Descriptor-对象上的。"><a href="#7-存值函数和取值函数是设置在属性的-Descriptor-对象上的。" class="headerlink" title="7.存值函数和取值函数是设置在属性的 Descriptor 对象上的。"></a>7.存值函数和取值函数是设置在属性的 Descriptor 对象上的。</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomHTMLElement</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(element) &#123;</span><br><span class="line">    <span class="keyword">this</span>.element = element;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> html() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.element.innerHTML;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> html(value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.element.innerHTML = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(</span><br><span class="line">  CustomHTMLElement.prototype, <span class="string">"html"</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="string">"get"</span> <span class="keyword">in</span> descriptor  <span class="comment">// true</span></span><br><span class="line"><span class="string">"set"</span> <span class="keyword">in</span> descriptor  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
-<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
-</ul>
-]]></content>
-      <categories>
-        <category>ES6入门</category>
-      </categories>
-      <tags>
-        <tag>ES6入门</tag>
-      </tags>
   </entry>
   <entry>
     <title>数组去重</title>
