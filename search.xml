@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Class的继承</title>
+    <url>/2020/09/07/Class-%E7%9A%84%E7%BB%A7%E6%89%BF/</url>
+    <content><![CDATA[<h1 id="ES6总结系列之-Class的继承-篇"><a href="#ES6总结系列之-Class的继承-篇" class="headerlink" title="ES6总结系列之 Class的继承 篇"></a>ES6总结系列之 Class的继承 篇</h1><p>ES6之前我们经常通过<strong>修改原型链</strong>的方法来实现继承，ES6的 Class 提供了更为便利、清晰的方法来实现继承，让我们来看下吧</p>
+<h2 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1. 基本用法"></a>1. 基本用法</h2><p>通过 <code>extends</code> 关键字来实现继承</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorPoint</span> <span class="keyword">extends</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y, color) &#123;</span><br><span class="line">    <span class="keyword">super</span>(x, y); <span class="comment">// 调用父类的constructor(x, y)</span></span><br><span class="line">    <span class="keyword">this</span>.color = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.color + <span class="string">' '</span> + <span class="keyword">super</span>.toString(); <span class="comment">// 调用父类的toString()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-注意要点"><a href="#2-注意要点" class="headerlink" title="2. 注意要点"></a>2. 注意要点</h2><ol>
+<li>子类的构造函数 construtor 方法中<strong>必须调用 super 方法</strong>，否则会报错</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ColorPoint</span> <span class="keyword">extends</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cp = <span class="keyword">new</span> ColorPoint(); <span class="comment">// ReferenceError</span></span><br></pre></td></tr></table></figure>
+
+<p>原因是子类自己的 this 对象，必须<strong>先通过父类的构造函数完成构造</strong></p>
+<ol start="2">
+<li><p>子类的构造函数中，只有<strong>调用了 super 之后，才可以使用 this</strong>，否则会报错</p>
+</li>
+<li><p>父类的静态方法，也会被子类继承</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> hello() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello world'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B.hello()  <span class="comment">// hello world</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-super-关键字"><a href="#3-super-关键字" class="headerlink" title="3. super 关键字"></a>3. super 关键字</h2><p><code>super</code> 关键字既可以<strong>当函数使用</strong>，也可以当<strong>做对象使用</strong></p>
+<ol>
+<li>当函数使用时，<strong>代表父类的构造函数</strong>，且只能<strong>用在子类的构造函数</strong>中，用在其他地方会报错</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>当函数使用时 super 内部的 this <strong>指的是B的实例</strong></li>
+</ol>
+<p>super 虽然代表了父类A的构造函数，但是<strong>返回</strong>的是<strong>子类B的实例</strong></p>
+<ol start="3">
+<li>super 作为对象的时，指向<strong>父类的原型对象</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.p = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">get</span> m() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.p;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B();</span><br><span class="line">b.m <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>由于 super 指向父类的原型对象，所以<strong>取不到</strong>定义在<strong>父类实例上的方法或属性</strong></p>
+<ol start="4">
+<li>super作为对象，用在<strong>静态方法之中</strong>，这时<strong>super将指向父类</strong>，而不是父类的原型对象。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> myMethod(msg) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'static'</span>, msg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  myMethod(msg) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'instance'</span>, msg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> myMethod(msg) &#123;</span><br><span class="line">    <span class="keyword">super</span>.myMethod(msg);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  myMethod(msg) &#123;</span><br><span class="line">    <span class="keyword">super</span>.myMethod(msg);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.myMethod(<span class="number">1</span>); <span class="comment">// static 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> child = <span class="keyword">new</span> Child();</span><br><span class="line">child.myMethod(<span class="number">2</span>); <span class="comment">// instance 2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-类的-prototype-属性和proto属性"><a href="#4-类的-prototype-属性和proto属性" class="headerlink" title="4.类的 prototype 属性和proto属性"></a>4.类的 prototype 属性和<strong>proto</strong>属性</h2><ol>
+<li><p>类的 <code>__proto__</code> 属性，表示构造函数的继承，总是指向父类</p>
+</li>
+<li><p>子类的 <code>prototype</code> 属性的 <code>__proto__</code> 属性，表示方法的继承，总是指向父类的 <code>prototype</code></p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B.__proto__ === A <span class="comment">// true</span></span><br><span class="line">B.prototype.__proto__ === A.prototype <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<img src="/2020/09/07/Class-%E7%9A%84%E7%BB%A7%E6%89%BF/class%E7%BB%A7%E6%89%BF.png" class title="This is an example image">
+
+<p>类的继承的实现模式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// B 的实例继承 A 的实例</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B.prototype, A.prototype);</span><br><span class="line"><span class="comment">// 等同于B.prototype.__proto__ = A.prototype;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// B 继承 A 的静态属性</span></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(B, A);</span><br><span class="line"><span class="comment">// 等同于B.__proto__ = A;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="keyword">new</span> B();</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>子类的构造函数 construtor 方法中<strong>必须调用 super 方法</strong>，否则会报错</li>
+<li>子类的构造函数中，只有<strong>调用了 super 之后，才可以使用 this</strong>，否则会报错</li>
+<li>父类的静态方法，也会被子类继承</li>
+</ol>
+<h4 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h4><ol>
+<li>super 作为<strong>函数</strong>时，<strong>代表父类的构造函数</strong>，且只能<strong>用在子类的构造函数</strong>中，用在其他地方会报错</li>
+<li>super 作为<strong>函数</strong>时， super 内部的 this <strong>指的是B的实例</strong></li>
+<li>super 作为<strong>对象</strong>时，指向<strong>父类的原型对象</strong></li>
+<li>super 作为<strong>对象</strong>时，用在<strong>静态方法之中</strong>，这时<strong>super将指向父类</strong>，而不是父类的原型对象。</li>
+</ol>
+<h4 id="类的-prototype-属性和proto属性"><a href="#类的-prototype-属性和proto属性" class="headerlink" title="类的 prototype 属性和proto属性"></a>类的 prototype 属性和<strong>proto</strong>属性</h4><ol>
+<li><p>类的 <code>__proto__</code> 属性，表示构造函数的继承，总是指向父类</p>
+</li>
+<li><p>子类的 <code>prototype</code> 属性的 <code>__proto__</code> 属性，表示方法的继承，总是指向父类的 <code>prototype</code></p>
+</li>
+</ol>
+<hr>
+<ul>
+<li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
+<li>ES6总结系列参考自阮一峰《ECMAScript6入门》</li>
+</ul>
+]]></content>
+      <categories>
+        <category>ES6入门</category>
+      </categories>
+      <tags>
+        <tag>ES6入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Class的基本语法下(es6)</title>
     <url>/2020/09/06/Class%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E4%B8%8B-es6/</url>
     <content><![CDATA[<h1 id="ES6总结系列之-Class（下）-篇"><a href="#ES6总结系列之-Class（下）-篇" class="headerlink" title="ES6总结系列之 Class（下） 篇"></a>ES6总结系列之 Class（下） 篇</h1><p>这篇文章我们来继续来聊聊class的基础用法，没看过上篇的小伙伴可以先看看Class的基本语法上(es6)，再来看这篇比较容易入手。</p>
