@@ -191,11 +191,30 @@
 <h4 id="2-match"><a href="#2-match" class="headerlink" title="2. match"></a>2. match</h4><p>形式：<code>str.match(reg)</code><br>正则表达式<strong>没有</strong> <code>g</code> 标识符，返回值与 exec 类似<br>正则表达式<strong>有</strong> <code>g</code> 标识符，返回一个数组（包含所有成功匹配的子串）<br>匹配失败就返回 null</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'xinshoux'</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/x/</span>;</span><br><span class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/x/g</span>;</span><br><span class="line"></span><br><span class="line">str.match(reg1) <span class="comment">// ["x", index: 0, input: "xinshoux", groups: undefined]</span></span><br><span class="line">str.match(reg2) <span class="comment">// ["x", "x"]</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-replace"><a href="#3-replace" class="headerlink" title="3. replace"></a>3. replace</h4><p>形式：<code>str.replace(reg | str, newStr)</code><br>用 <code>newStr</code> 替换匹配到的 reg 子串，<strong>返回一个新的字符串，不会修改原字符串</strong></p>
+<h4 id="3-replace"><a href="#3-replace" class="headerlink" title="3. replace"></a>3. replace</h4><p>形式：<code>str.replace(reg | str, newStr | callback)</code></p>
+<ol>
+<li>用 <code>newStr</code> 替换匹配到的 reg 子串，<strong>返回一个新的字符串，不会修改原字符串</strong></li>
+</ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'xinshoux'</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/x/g</span>;</span><br><span class="line"></span><br><span class="line">str.replace(reg1, <span class="string">'a'</span>) <span class="comment">// ainshoua</span></span><br></pre></td></tr></table></figure>
 
-<p>就像正则里我们可以用 <code>\1</code> 来引用第一个子表达式匹配的内容一样，我们可以用 <code>$1</code> 来引用相同的内容<br>由于 <code>$</code> 有了特殊的含义，当需要使用 <code>$</code> 时需要写成 <code>$$</code></p>
+<ol start="2">
+<li>就像正则里我们可以用 <code>\1</code> 来引用第一个子表达式匹配的内容一样，我们可以用 <code>$1</code> 来引用相同的内容<br>由于 <code>$</code> 有了特殊的含义，当需要使用 <code>$</code> 时需要写成 <code>$$</code></li>
+</ol>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'xinshou'</span>;</span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/(x)/</span>;</span><br><span class="line"></span><br><span class="line">str.replace(reg1, <span class="string">'$1$1'</span>) <span class="comment">// xxinshou</span></span><br><span class="line">str.replace(reg1, <span class="string">'$$$$'</span>) <span class="comment">// $$inshou</span></span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>当第二个参数为函数 <code>callback</code> 时，用函数的<strong>返回值</strong>替换匹配到的 reg 子串<br>此时callback的arguments会有4个参数<blockquote>
+<ol>
+<li>匹配到的字符串</li>
+<li>如果正则使用了分组匹配就为多个否则无此参数。</li>
+<li>匹配字符串的对应索引位置</li>
+<li>原始字符串</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"http://www.baidu.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//没有分组时</span></span><br><span class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/^http(?=:)/</span></span><br><span class="line"><span class="keyword">var</span> newStr1 = str.replace(reg1, (value, index, originStr) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value) <span class="comment">// http</span></span><br><span class="line">  <span class="built_in">console</span>.log(index) <span class="comment">// 0</span></span><br><span class="line">  <span class="built_in">console</span>.log(originStr) <span class="comment">// http://www.baidu.com</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"https"</span></span><br><span class="line">&#125;)</span><br><span class="line">newStr1 <span class="comment">// https://www.baidu.com</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="4-split"><a href="#4-split" class="headerlink" title="4. split"></a>4. split</h4><p>形式：<code>str.split(reg | str)</code></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"2020-09-08 16:25:12"</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/-|\s|:/</span>;</span><br><span class="line"></span><br><span class="line">str.split(reg) <span class="comment">// ['2020', '09', '08', '16', '25', '12']</span></span><br></pre></td></tr></table></figure>]]></content>
@@ -764,6 +783,25 @@
 
 <h2 id="5-Promise-prototype-finally"><a href="#5-Promise-prototype-finally" class="headerlink" title="5. Promise.prototype.finally()"></a>5. Promise.prototype.finally()</h2><p>finally()方法用于指定<strong>不管</strong> Promise 对象最后<strong>状态如何</strong>，<strong>都会执行</strong>的操作。该方法是 ES2018 引入标准的。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">promise</span><br><span class="line">.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;···&#125;)</span><br><span class="line">.finally(<span class="function"><span class="params">()</span> =&gt;</span> &#123;···&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Promise-all"><a href="#6-Promise-all" class="headerlink" title="6. Promise.all()"></a>6. Promise.all()</h2><p>Promise.all() 用于<strong>批量处理</strong> Promise，并包装成一个新的 Promise 实例</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.all(p1, p2, p3)</span><br></pre></td></tr></table></figure>
+
+<p>p的状态由p1, p2, p3决定：</p>
+<ol>
+<li>当p1, p2, p3结果<strong>都为</strong>‘fulfilled’,p才为’fulfilled’</li>
+<li>p1, p2, p3结果只要有一个为 ‘rejected’ ,p就为 ‘rejected’</li>
+</ol>
+<h2 id="7-Promise-race"><a href="#7-Promise-race" class="headerlink" title="7. Promise.race()"></a>7. Promise.race()</h2><p>同样是将多个 Promise 实例，包装成一个新的 Promise 实例</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.race([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+
+<p>只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变（只更第一个改变状态的Promise有关，无视另外的变化）</p>
+<p><strong>多用于后台请求超时处理</strong></p>
+<h2 id="8-Promise-allSettled"><a href="#8-Promise-allSettled" class="headerlink" title="8. Promise.allSettled()"></a>8. Promise.allSettled()</h2><p>只有等到所有这些参数实例都返回结果，不管是fulfilled还是rejected，包装实例才会结束</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.allSettled([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+
+<p><strong>多用于所有请求都结束后，关闭加载动画（不管请求成功或失败）</strong></p>
+<h2 id="9-Promise-any"><a href="#9-Promise-any" class="headerlink" title="9. Promise.any()"></a>9. Promise.any()</h2><p>Promise.any() 方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。<br>只要参数实例有一个变成fulfilled状态，包装实例就会变成fulfilled状态；<br>如果所有参数实例都变成rejected状态，包装实例就会变成rejected状态。</p>
 <hr>
 <ul>
 <li><a href https: github.com yoursjoker"" title="欢迎stars">个人Github</a>，欢迎star^_^</li>
